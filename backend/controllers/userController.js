@@ -30,6 +30,8 @@ if(user && (await user.matchPassword(password))){
 // @desc register user
 //route POST /api/users/register
 // @access Public
+
+
 const registerUser=asyncHandler(async(req,res)=>{
     const {name,email,password}=req.body
 console.log(name,email,password);

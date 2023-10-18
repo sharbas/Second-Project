@@ -6,9 +6,11 @@ import{Provider} from 'react-redux'
 import App from './App.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css'
-import HomeScreen from './screens/HomeScreen.jsx';
-import LoginScreen from './screens/LoginScreen.jsx';
-import RegisterScreen from './screens/RegisterScreen.jsx';
+import HomeScreen from './screens/Users/HomeScreen.jsx';
+import LoginScreen from './screens/Users/LoginScreen.jsx';
+import RegisterScreen from './screens/Users/RegisterScreen.jsx';
+import ProfileScreen from './screens/Users/ProfileScreen.jsx'
+import PrivateRoute from './components/privateRoute.jsx'
 
 const router=createBrowserRouter(
   createRoutesFromElements(
@@ -16,7 +18,9 @@ const router=createBrowserRouter(
       <Route index={true} path='/' element={<HomeScreen/>}/>
       <Route  path='/login' element={<LoginScreen/>}/>
       <Route  path='/register' element={<RegisterScreen/>}/>
-
+      <Route path='' element={<PrivateRoute/>}>
+      <Route  path='/profile' element={<ProfileScreen/>}/>
+      </Route>
     </Route>
   )
 )
