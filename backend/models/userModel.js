@@ -15,6 +15,14 @@ const userSchema=mongoose.Schema({
         type:String,
         required:true
     },
+    otp:{
+        type:Number,
+        default:null
+    },
+    isBlocked:{
+        type:Boolean,
+        default:false
+    }
 
 },{timestamps:true})
 

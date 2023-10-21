@@ -10,9 +10,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.2",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@mui/styled-engine": "^5.14.14",
     "@react-oauth/google": "^0.11.1",
     "@reduxjs/toolkit": "^1.9.7",
+    "axios": "^1.5.1",
     "gapi-script": "^1.2.0",
+    "mdb-react-ui-kit": "^6.3.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.9.0",
     "react-dom": "^18.2.0",

@@ -11,26 +11,13 @@ export const usersApiSlice = apiSlice.injectEndpoints({
     }),
     register: builders.mutation({
       query: (data) => ({
+  
         url: `${USERS_URL}/register`,
         method: "POST",
         body: data,
       }),
     }),
-    googleAuth: builders.mutation({
-      query: (data) => ({
-        url: `${USERS_URL}/oauth`,
-        method: `POST`,
-        body: data,
-      }),
-    }),
-    googleLogin:builders.mutation({
-      query:(data)=>({
-        url:`${USERS_URL}/g-Login`,
-        method:'POST',
-        body:data
-
-      })
-    }),
+    
     updateUser: builders.mutation({
       query: (data) => ({
         url: `${USERS_URL}/profile`,
@@ -51,7 +38,5 @@ export const {
   useLoginMutation,
   useLogoutMutation,
   useRegisterMutation,
-  useGoogleAuthMutation,
-  useGoogleLoginMutation,
   useUpdateUserMutation,
 } = usersApiSlice;

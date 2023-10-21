@@ -1,0 +1,130 @@
+/* hotelSidebar.css */
+
+.hotel-sidebar {
+    background-color: #000000;
+    color: #ffffff;
+    width: 250px;
+    height: 100vh; /* Set the height to 100% of the viewport height */
+    position: fixed;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    top: 120px;
+    left: 0;
+    transition: transform 0.3s ease;
+  }
+  .hotel-sidebar a {
+    text-decoration: none; /* Remove underline */
+    color: white /* Set your preferred color */
+  }
+  
+  .toggle-button {
+    cursor: pointer;
+    color: #0eefff;
+    font-size: 20px;
+    align-self: flex-end;
+    margin-top: 10px;
+    margin-right: 10px;
+  }
+  
+  .hotel-sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .hotel-sidebar li {
+    padding: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    margin-right: 10px;
+    border: 2px solid transparent;
+    border-radius: 12px; /* Rounded border */
+    transition: border-color 0.3s ease;
+  }
+  
+  .hotel-sidebar li.logout-button {
+    margin-top: auto; /* Push the logout button to the bottom */
+    color: red;
+  }
+  
+  .hotel-sidebar li.logout-button:hover {
+    border-color: #dc3545; 
+  }
+  
+  .hotel-sidebar li:hover {
+    border-color: #007bff;
+  }
+  
+  
+  .sidebar-icon {
+    margin-right: 10px;
+    flex-shrink: 0;
+  }
+  
+  .menu-text {
+    display: block;
+  }
+  
+  .menu-text.hidden {
+    display: none;
+  }
+  
+  .icons-only {
+    transform: translateX(-200px);
+  }
+  
+  .icons-only .sidebar-icon.hidden {
+    display: none;
+  }
+  
+  @media (max-width: 768px) {
+    .hotel-sidebar {
+      width: 50px;
+    }
+  
+    .hotel-sidebar ul li {
+      text-align: center;
+    }
+  
+    .hotel-sidebar ul li .sidebar-icon {
+      margin-right: 0;
+    }
+  }
+  
+  @media (max-width: 760px) {
+    .hotel-sidebar {
+      width: 50px;
+    }
+  
+    .hotel-sidebar .menu-text {
+      display: none;
+    }
+  
+    .hotel-sidebar.icons-only {
+      transform: translateX(0);
+    }
+  
+    .hotel-sidebar.icons-only .sidebar-icon.hidden {
+      display: flex;
+    }
+  
+    .toggle-button {
+      margin-right: 5px;
+    }
+  }
+  
+  @media (max-width: 400px) {
+    .hotel-sidebar li {
+      padding: 10px;
+    }
+  
+    .hotel-sidebar .toggle-button {
+      margin-right: 0;
+    }
+  
+    .hotel-sidebar.icons-only .sidebar-icon.hidden {
+      display: flex;
+    }
+  }

@@ -15,6 +15,14 @@ const hotelSchema=mongoose.Schema({
     password:{
         type:String,
         required:true,
+    },
+    otp:{
+        type:Number,
+        default:null
+    },
+    isBlocked:{
+        type:Boolean,
+        default:false
     }
 })
 

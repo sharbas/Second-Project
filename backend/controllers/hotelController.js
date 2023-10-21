@@ -20,6 +20,7 @@ const hotelController={
         }
     }),
     register:asyncHandler(async(req,res)=>{
+        console.log('hai hotel is here in the register');
         const {name,email,password}=req.body
         const hotelExists=await Hotel.findOne({email})
 

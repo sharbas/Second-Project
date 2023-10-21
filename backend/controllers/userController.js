@@ -20,7 +20,7 @@ if(user && (await user.matchPassword(password))){
     })
 }else{
    res.status(401)
-   throw new Error('Invalid email or password') 
+   throw new Error('Invalid email or password user') 
 }
 
     res.status(200).json({message:"Auth User"})

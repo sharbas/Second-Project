@@ -1,0 +1,21 @@
+.body{
+    background-color:#E6E6FA
+}
+.home{
+    background-color: #FFFFF0 ;
+    height: 100vh;
+}
+.home-screen {
+    background-color:   #FFFFE0 
+
+
+
+    ; /* Specify the path to your image in the public folder */
+    background-size: cover;
+    background-position: center;
+    /* Add any other styles for the home screen background */
+    height: 100vh; /* Set the height to 100% to cover the entire viewport */
+    margin: 0;
+    padding: 0;
+  }
+  
