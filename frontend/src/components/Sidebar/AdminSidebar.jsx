@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./AdminSidebar.css";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import AdminHeader from "../Header/AdminHeader.jsx";
 import { Link,useNavigate } from "react-router-dom"; // Import the Link component
-import { axiosInstance } from "../../utils/adminAxiosInst";
+import  adminAxiosInstance  from "../../utils/adminAxiosInstance";
 import {
   FaHome,
   FaUser,
   FaHotel,
   FaSuitcase,
+  FaList,
   FaPlus,
   FaEdit,
   FaChartBar,
@@ -16,19 +17,21 @@ import {
 } from "react-icons/fa";
 import { logout } from "../../slices/AdminSlices/adminAuthSlice";
 
-function AdminSidebar() {
+function AdminSidebar({toggleSidebar}) {
   const [isIconsOnly, setIsIconsOnly] = useState(false);
 
   const toggleIconsOnly = () => {
     setIsIconsOnly(!isIconsOnly);
+    toggleSidebar('admin')
   };
+  const adminInfo=useSelector((state)=>state.adminauth)
 
   const dispatch=useDispatch()
   const navigate=useNavigate()
 
   const handleLogout =async () => {
     try{
-      const res=await axiosInstance.post('/logout')
+      const res=await adminAxiosInstance.post('/logout')
        dispatch(logout())
        navigate('/admin/login')
        
@@ -42,7 +45,7 @@ function AdminSidebar() {
   return (
     <>
       <AdminHeader />
-      <aside className={` admin-sidebar ${isIconsOnly ? "icons-only" : ""}`}>
+    { adminInfo &&  <aside className={` admin-sidebar ${isIconsOnly ? "icons-only" : ""}`}>
   
         <div className="toggle-button" onClick={toggleIconsOnly}>
           {isIconsOnly ? "☰" : "✖"}
@@ -76,6 +79,7 @@ function AdminSidebar() {
                 className={`sidebar-icon ${isIconsOnly ? "hidden" : ""}`}
               />
               <span className={`menu-text ${isIconsOnly ? "hidden" : ""}`}>
+               
                 Hotel Management
               </span>
               </div>
@@ -94,7 +98,7 @@ function AdminSidebar() {
             </Link>
           </li>
           <li>
-            <Link to="/admin/addPackage"> {/* Add Link to Add Package */}
+            <Link to="/admin/packageAddForm"> {/* Add Link to Add Package */}
             <div className="d-flex" >
               <FaPlus
                 className={`sidebar-icon ${isIconsOnly ? "hidden" : ""}`}
@@ -106,13 +110,13 @@ function AdminSidebar() {
             </Link>
           </li>
           <li>
-            <Link to="/admin/editPackage"> {/* Add Link to Edit Package */}
+            <Link to="/admin/PackageDetails"> {/* Add Link to Edit Package */}
             <div className="d-flex" >
-              <FaEdit
-                className={`sidebar-icon ${isIconsOnly ? "hidden" : ""}`}
-              />
+            <FaList
+                 className={`sidebar-icon ${isIconsOnly ? 'hidden' : ''}`}
+                  />
               <span className={`menu-text ${isIconsOnly ? "hidden" : ""}`}>
-                Edit Package
+                 Package details
               </span>
               </div>
             </Link>
@@ -143,7 +147,7 @@ function AdminSidebar() {
           </li>
         </ul>
        
-      </aside>
+      </aside>}
     </>
   );
 }

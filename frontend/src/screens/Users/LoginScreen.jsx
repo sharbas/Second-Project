@@ -24,7 +24,7 @@ const LoginScreen = () => {
 
   useEffect(() => {
     if (userInfo) {
-      navigate("/user/home");
+      navigate("/");
     }
   }, [navigate, userInfo]);
 
@@ -40,8 +40,9 @@ const LoginScreen = () => {
     e.preventDefault();
     try {
       const res = await login({ email, password }).unwrap();
+      
       dispatch(setCredentials({ ...res }));
-      navigate("/user/");
+      navigate("/");
     } catch (err) {
       toast.error(err?.data?.message || err.error);
     }
@@ -65,13 +66,18 @@ const LoginScreen = () => {
             Sign In
           </button>
         </div>
-        <p className='text-end mt-2'>
-          Forgot <a href=''>Password?</a>
-        </p>
+        <div className='d-flex justify-content-between mb-3'>
+          <p className='mt-2'>
+            <a href='/register' style={{textDecoration:'none'}}>Register</a>
+          </p>
+          <p className='mt-2'>
+            Forgot <a href='/forgotPassword' style={{textDecoration:'none'}}>Password?</a>
+          </p>
+        </div>
       </form>
     </div>
-    
   </div>
+  
 
 
   

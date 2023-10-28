@@ -26,11 +26,6 @@ const hotelSchema=mongoose.Schema({
     }
 })
 
-//Match user entered password to hashed password in database
-hotelSchema.methods.matchPassword=async function (enteredPassword){
-    return await bcrypt.compare(enteredPassword,this.password)
-}
-
 hotelSchema.pre('save',async function(next){
     if(!this.isModified('password')){
         next()
@@ -38,6 +33,11 @@ hotelSchema.pre('save',async function(next){
     const salt = await bcrypt.genSalt(10)
     this.password=await bcrypt.hash(this.password,salt)
 })
+//Match user entered password to hashed password in database
+hotelSchema.methods.matchPassword=async function (enteredPassword){
+    return await bcrypt.compare(enteredPassword,this.password)
+}
+
 
 const Hotel=mongoose.model('Hotel',hotelSchema)
 

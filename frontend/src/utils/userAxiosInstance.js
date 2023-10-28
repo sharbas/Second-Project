@@ -1,8 +1,8 @@
 import axios from "axios";
 
 
-const axiosInstance = axios.create({
-    baseURL: 'http://localhost:5000/api/admin', // Replace with your API URL
+const userAxiosInstance = axios.create({
+    baseURL: 'http://localhost:5000/api/users', // Replace with your API URL
     headers: {
       'Content-Type': 'application/json',
       withCredentials: true, // If needed for cross-origin requests
@@ -10,10 +10,10 @@ const axiosInstance = axios.create({
   });
   
   // Apply the authcheck middleware to the Axios instance
-  axiosInstance.interceptors.request.use(
+  userAxiosInstance.interceptors.request.use(
     async (config) => {
-      const token = localStorage.getItem('adminToken');
-      
+      const userInfo = localStorage.getItem('userInfo');
+      const token=userInfo.userToken
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
       }
@@ -26,4 +26,4 @@ const axiosInstance = axios.create({
   );
   
 
-  export {axiosInstance}; 
+  export default userAxiosInstance;

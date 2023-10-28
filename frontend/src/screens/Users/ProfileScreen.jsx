@@ -47,9 +47,10 @@ const ProfileScreen = () => {
   };
 
   return (
-    <FromContainer>
-      <h1>Update profile</h1>
-      <Form onSubmit={submitHandler}>
+    
+    <FromContainer  >
+      <h1>User profile</h1>
+      <Form onSubmit={submitHandler} style={{backgroundColor:'yellow'}}>
         <Form.Group className="my-2" controllId="email">
           <Form.Label>Name</Form.Label>
           <Form.Control
@@ -95,6 +96,7 @@ const ProfileScreen = () => {
         </Button>
       </Form>
     </FromContainer>
+  
   );
 };
 export default ProfileScreen;

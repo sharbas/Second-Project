@@ -45,7 +45,7 @@ const HotelSignUp = () => {
         const res = await register({ name, email, password }).unwrap();
         dispatch(setCredentials({ ...res }));
         console.log("Naa ready thaan");
-        navigate("/hotel/home");
+        navigate("/hotel/login");
       } catch (error) {
         toast.error("error 1" || err?.data?.message || err.error);
       }
@@ -55,7 +55,7 @@ const HotelSignUp = () => {
   return (
     <>
     <div>
-          <div className='signup template d-flex justify-content-center align-items-center vh-100 ' style={{ backgroundColor: '#EFD3B5' }}>
+          <div className='signup template d-flex justify-content-center align-items-center vh-100 ' style={{ backgroundColor: 'rgb(255 204 0)' }}>
             <div className='form_container p-5 rounded bg-white'>
               <form onSubmit={submitHandler}>
                 <h3 className='text-center'>Sign Up</h3>
@@ -81,8 +81,8 @@ const HotelSignUp = () => {
                   <button type="submit" className='btn btn-primary mb-3'>Sign Up</button>
                 </div>
                 <p className='text-end mt-2'>
-                  <Link to='/login' className='ms-2'>Sign In</Link>
-                </p>
+              <Link to='/hotel/login' className='ms-2' style={{textDecoration:'none'}}>Sign In</Link>
+            </p>
               </form>
             </div>
           </div>

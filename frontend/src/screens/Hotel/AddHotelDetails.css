@@ -1,0 +1,68 @@
+/* AddHotelDetails.css */
+.hotel-form {
+    padding: 20px;
+    color: white;
+  }
+  
+  form {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 10px;
+
+  }
+  
+  label {
+    display: block;
+    margin-top: 10px;
+    color: white;
+  }
+  
+  input[type="file"],
+  input[type="text"],
+  input[type="number"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    color: white;
+  }
+  
+  /* Style the square image upload field */
+  input[type="file"] {
+    height: 100px;
+    background: rgba(255, 255, 255, 0.1) url('image-icon.png') center/40px no-repeat;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  /* Add a hover effect */
+  input[type="file"]:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  button {
+    background-color: rgb(11, 142, 140);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+    border-radius: 5px;
+  }
+  
+  button:hover {
+    background-color: #0caca8;
+  }
+
+  .column{
+    width: 30rem;
+  }
+  .row{
+    padding-left: 20rem;
+  }
+  

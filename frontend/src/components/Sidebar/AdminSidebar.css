@@ -19,7 +19,7 @@
 
 .toggle-button {
   cursor: pointer;
-  color: #808282;
+  color: #64dede;
   font-size: 20px;
   align-self: flex-end;
   margin-top: 10px;
@@ -72,6 +72,13 @@
 .icons-only .sidebar-icon {
   display: none; /* Hide the icon in icons-only mode */
 }
+@media (min-width: 768px) {
+  .toggle-button {
+    margin-right: 5px;
+    color: aqua;
+  }
+}
+
 
 @media (max-width: 768px) {
   .admin-sidebar {
@@ -90,6 +97,11 @@
 
   .admin-sidebar ul li .sidebar-icon {
     margin-right: 5px; /* Adjust this value as needed */
+  }
+  
+  .toggle-button {
+    margin-right: 5px;
+    color: aqua;
   }
 }
 
@@ -112,6 +124,7 @@
 
   .toggle-button {
     margin-right: 5px;
+    color: aqua;
   }
 }
 
@@ -126,5 +139,11 @@
 
   .admin-sidebar.icons-only .sidebar-icon {
     display: inline; /* Display the icon in icons-only mode */
+   
+  }
+  
+  .toggle-button {
+    margin-right: 5px;
+    color: aqua;
   }
 }

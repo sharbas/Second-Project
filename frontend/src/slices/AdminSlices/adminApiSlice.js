@@ -12,6 +12,14 @@ export const adminsApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    loadHotelUsers: builders.mutation({
+      query: (data) => ({
+        
+        url: `${ADMINS_URL}/loadHotelUsers`,
+        method: "POST",
+        body: data,
+      }),
+    }),
     logout: builders.mutation({
       query: () => ({
         url: `${ADMINS_URL}/logout`,
@@ -22,4 +30,4 @@ export const adminsApiSlice = apiSlice.injectEndpoints({
 });
 
 
-export const {useAdminLoginMutation,useLogoutMutation} = adminsApiSlice;
+export const {useAdminLoginMutation,useLogoutMutation,useLoadHotelUsersMutation} = adminsApiSlice;

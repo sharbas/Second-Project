@@ -1,7 +1,7 @@
 import asyncHandler from 'express-async-handler'
 import User from '../models/userModel.js'
 import generateToken from '../utils/generateToken.js'
-
+import sendResetMail from '../utils/nodeMailer.js'
 
 
 // @desc Auth user/set token
@@ -12,11 +12,13 @@ const {email,password}=req.body
 const user=await User.findOne({email})
 if(user && (await user.matchPassword(password))){
     console.log('hai sharbas this is user auth');
-    generateToken(res,user._id)
+  const userToken=  generateToken(res,user._id)
+    if(user.isBlocked===true){
+        res.status(403).json({message:'you are blocked'})
+        console.log('blocked is working');
+    }
     res.status(201).json({
-        _id:user._id,
-        name:user.name,
-        email:user.email
+        userToken
     })
 }else{
    res.status(401)
@@ -34,23 +36,27 @@ if(user && (await user.matchPassword(password))){
 
 const registerUser=asyncHandler(async(req,res)=>{
     const {name,email,password}=req.body
-console.log(name,email,password);
-const userExists=await User.findOne({email})
-if(userExists){
-    res.status(400)
-    throw new Error('User already exists')
-}
+    const userExists=await User.findOne({email})
+    if(userExists){
+        res.status(400)
+        console.log(name,email,password,'user exist ');
+        throw new Error('User already exists backend')
+    }
+      // Password validation
+  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+  if (!password.match(passwordRegex)) {
+    res.status(400);
+    throw new Error('Password must contain 8 characters, at least 1 uppercase letter, 1 lowercase letter and 1 digit.');
+  }
 const user=await User.create({
     name,
     email,
     password
 })
 if(user ){
-    generateToken(res,user._id)
+   const userToken= generateToken(res,user._id)
     res.status(201).json({
-        _id:user._id,
-        name:user.name,
-        email:user.email
+        userToken
     })
 }else{
    res.status(401)
@@ -58,6 +64,74 @@ if(user ){
 }
   
 })
+
+const verifyEmail=asyncHandler(async(req,res)=>{
+const {email}=req.body
+const user=await User.findOne({email})
+const token1 = Math.floor(100000 + Math.random() * 900000).toString()
+const otpExpiration=new Date(Date.now()+1*120*1000)
+if(user){
+    user.otp=token1
+    user.otpExpiration=otpExpiration
+    await user.save()
+    sendResetMail(user.name,email,user.otp)
+    console.log(email,'hai verifyemail');
+    res.status(200).json('its working')
+}else{
+    res.status(400).json("User not found")
+}
+    
+})
+
+
+const confirmOtp=asyncHandler(async(req,res)=>{
+const {state,otp}=req.body
+const user=await User.findOne({email:state})
+if(user.otp==otp){
+    res.status(200).json('Successfull')
+}else{
+    res.status(400).json("Incorrect otp")
+}
+    
+})
+
+
+const resetPassword=asyncHandler(async(req,res)=>{
+    const {state,password}=req.body
+    console.log(state,'pass',password);
+    const user=await User.findOne({email:state})
+    if(user){
+        user.password=password
+        await user.save()
+        res.status(200).json('success')
+    }
+})
+
+const otpLoginVerifyEmail=asyncHandler(async(req,res)=>{
+    const {email}=req.body
+    const user=await User.find({email})
+    const token1=Math.floor(100000 + Math.random() * 900000).toString()
+    if(user){
+        user.otp=token1
+        await user.save()
+        sendResetMail(user.name,email,user.otp)
+        res.status(200).json('Successfull')
+
+    }else{
+        res.status(400).json('Invalid Email')
+    }
+})
+
+const otpLogin=asyncHandler(async(req,res)=>{
+    const {state,otp}=req.body
+    const user=await User.findOne({email:state})
+    if(user.otp==otp){
+        res.status(201).json({_id:user._id,name:user.name,email:user.email})
+    }else{
+        res.status(400).json('Incorrect Otp')
+    }
+})
+
 
 
 // @desc logout user
@@ -116,6 +190,12 @@ export{
     registerUser,
     logoutUser,
     getUserProfile,
-    updateUserProfile
+    updateUserProfile,
+    verifyEmail,
+    confirmOtp,
+    resetPassword,
+    otpLoginVerifyEmail,
+    otpLogin
+
 
 }

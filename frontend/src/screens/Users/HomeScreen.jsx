@@ -3,7 +3,7 @@ import "./HomeScreen.css";
 
 const HomeScreen = () => {
   const homeStyles = {
-    backgroundColor: "black",
+    backgroundColor: "#efebe2",
     height: "100vh",
     display: "flex",
     alignItems: "center",

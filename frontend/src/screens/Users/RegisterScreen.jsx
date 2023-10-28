@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
 import { setCredentials } from "../../slices/authSlice.js";
 import './RegisterScreen.css'
- import { useRegisterMutation, } from "../../slices/usersApiSlice.js";
+import userAxiosInstance from "../../utils/userAxiosInstance.js";
 // import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 // import image from '../../public/pexels-cottonbro-studio-4067753.jpg'
 
@@ -19,15 +19,15 @@ const RegisterScreen = () => {
   const dispatch = useDispatch();
 
   const { userInfo } = useSelector((state) => state.auth);
-  const [register] = useRegisterMutation();
+
   // , { isLoading }
   // const [googleAuth, { authLoading }] = useGoogleAuthMutation();
 
-  useEffect(() => {
-    if (userInfo) {
-      navigate("/user/");
-    }
-  }, [navigate, userInfo]);
+  // useEffect(() => {
+  //   if (userInfo) {
+  //     navigate("/");
+  //   }
+  // }, [navigate, userInfo]);
 
   // const authenticateData = async (credentialResponse) => {
   //   try {
@@ -45,12 +45,12 @@ const RegisterScreen = () => {
       toast.error("Passwords do not match");
     } else {
       try {
+        const res = await userAxiosInstance.post('/register',{name,email,password})
         console.log('hai it register');
-        const res = await register({ name, email, password }).unwrap();
         dispatch(setCredentials({ ...res }));
-        navigate("/user/");
+        navigate("/login");
       } catch (error) {
-        toast.error(err?.data?.message || err.error);
+       toast.error(error?.response?.data?.message || error.message);
       }
     }
   };
@@ -84,7 +84,7 @@ const RegisterScreen = () => {
               <button type="submit" className='btn btn-primary mb-3'>Sign Up</button>
             </div>
             <p className='text-end mt-2'>
-              <Link to='/login' className='ms-2'>Sign In</Link>
+              <Link to='/login' className='ms-2' style={{textDecoration:'none'}}>Sign In</Link>
             </p>
           </form>
         </div>

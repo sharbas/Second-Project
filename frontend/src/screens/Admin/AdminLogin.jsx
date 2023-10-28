@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setCredentials } from "../../slices/AdminSlices/adminAuthSlice.js";
-import { toast,ToastContainer } from "react-toastify";
+import { toast} from "react-toastify";
 import { useAdminLoginMutation } from "../../slices/AdminSlices/adminApiSlice.js";
 import './AdminLogin.css'
-import { axiosInstance } from "../../utils/adminAxiosInst.js";
+import  adminAxiosInstance  from "../../utils/adminAxiosInstance.js";
+import axios from "axios";
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -25,17 +26,19 @@ const AdminLogin = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      console.log(email,'client');
-      const res = await axiosInstance.post('/auth',{email,password})
-      dispatch(setCredentials({ ...res.data }));
-      navigate("/admin/home");
-    } catch (err) {
-      toast.error(err?.data?.message || err.error);
+   
+        const res = await axios.post('http://localhost:5000/api/admin/auth', { email, password });
+        console.log('res',res.data)
+        dispatch(setCredentials({ ...res.data }));
+        navigate("/admin/home");
+        toast.success(res.data.message);
+    } catch (error) {
+        toast.error(error.response?.data.message || error.message); // Access 'data.message' property
     }
-  };
+};
 
   return (
-    <div className='login template d-flex justify-content-center align-items-center vh-100' style={{ backgroundColor: '#EFD3B5' }}>
+    <div className='login template d-flex justify-content-center align-items-center vh-100' style={{ backgroundColor: 'rgb(11 142 140)' }}>
     <div className='form_container p-5 rounded bg-white'>
       <form onSubmit={submitHandler}>
         <h3 className='text-center'>Sign In</h3>
@@ -50,12 +53,10 @@ const AdminLogin = () => {
             Sign In
           </button>
         </div>
-        <p className='text-end mt-2'>
-          Forgot <a href=''>Password?</a>
-        </p>
+      
       </form>
     </div>
-    <ToastContainer/>
+
   </div>
   );
 };

@@ -1,0 +1,48 @@
+.package-list {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  h2 {
+    color: #00796b;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  table th {
+    background-color: #00796b;
+    color: #fff;
+    padding: 10px;
+    text-shadow: 2px 2px 2px black;
+  }
+  
+  table td {
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    text-shadow: 0.5px 1px 1px black;
+  }
+  
+  table td:nth-child(odd) {
+    background-color: #f2f2f2;
+  }
+  
+  table td button {
+    background-color: #00796b;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 1rem;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    text-shadow: 2px 2px 2px black;
+  }
+  
+  table td button:hover {
+    background-color: #005a4f;
+  }
+  

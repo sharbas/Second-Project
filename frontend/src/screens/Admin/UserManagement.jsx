@@ -2,7 +2,8 @@ import React, {useEffect,useState}from 'react'
 import { FaUnlock,FaLock } from 'react-icons/fa'
 import './UserManagement.css'
 import {DataGrid} from '@mui/x-data-grid'
-import { axiosInstance } from '../../utils/adminAxiosInst.js'
+import  adminAxiosInstance  from '../../utils/adminAxiosInstance.js'
+
 
 
 const UserManagement=()=> {
@@ -32,7 +33,7 @@ const UserManagement=()=> {
       isBlocked=!isBlocked;
       setBlocked(!blocked)
 
-      const response=await axiosInstance.put(`/blockUnblockUser`,{userId,isBlocked})
+      const response=await adminAxiosInstance.put(`/blockUnblockUser`,{userId,isBlocked})
     }catch(error){
       console.error('Error blocking user:',error)
     }
@@ -45,7 +46,9 @@ useEffect(()=>{
 
 const fetchData=async()=>{
   try{
-const res=await axiosInstance.get('/loadUsers')
+    console.log('this is fetchdata try block');
+const res=await adminAxiosInstance.get('/loadUsers')
+console.log('resssss',res);
 setRows([...res.data.users])
 console.log(res.data.users);
   }catch(error){

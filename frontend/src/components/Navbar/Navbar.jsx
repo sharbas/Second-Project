@@ -7,7 +7,7 @@ import "./Navbar.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignOutAlt,faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import { toast } from "react-toastify";
-import axiosInstance from "../../utils/userAxios.js";
+import userAxiosInstance from "../../utils/userAxiosInstance.js";
 
 
 const Navbar = () => {
@@ -20,11 +20,11 @@ const dispatch=useDispatch()
 // const Logout=useLogoutMutation()
 const navigate=useNavigate()
 
-  const isHomeRoute = location.pathname === '/user/home'
+  const isHomeRoute = location.pathname === '/'
   const navLinks = [
-    { id: 1, text: 'Home', path: '/user/home' },
-    { id: 2, text: 'packages & destination', path: '' },
-    { id: 3, text: 'contact', path: '' },
+    { id: 1, text: 'Home', path: '/' },
+    { id: 2, text: 'packages & destination', path: '/packages&destinaion' },
+    { id: 3, text: 'contact', path: '/contact' },
     
 
   ];
@@ -43,11 +43,11 @@ const navigate=useNavigate()
   const handleLogout=async()=>{
     try{
 console.log('hai logout');
-   const res=await axiosInstance.post('/logout')
+   const res=await userAxiosInstance.post('/logout')
 console.log('hai logout2');
 
           dispatch(logout())
-          navigate('/user/login')
+          navigate('/login')
     }catch(error){
 toast.error(error?.error)
     }
@@ -73,14 +73,16 @@ toast.error(error?.error)
   return (
     <>
     <nav className={`navbar${isHomeRoute ? '-home' : ''}`}>
+      <div className="logo">
       <a href="#">
       <img
   id="logo"
-  src='/public/logo2.png'
+  src='/LOGO-user.png'
   alt="Logo"
   style={{ width: '100px', height: '100px' }} // Use an object, not a string
 />
       </a>
+      </div>
       <div>
         <ul id="navbar" className={mobileMenuOpen ? 'active' : ''}>
           {navLinks.map((link, index) => (
@@ -103,7 +105,7 @@ toast.error(error?.error)
 </button>
 </li>
               <li>
-<Link to="/user/profile" className="profile-icon">
+<Link to="/profile" className="profile-icon">
   <img
     src="/public/profilelogo.png"
     alt="User Profile"
@@ -119,7 +121,7 @@ toast.error(error?.error)
           ) : (
             <>
             <li>
-              <Link to="/user/login"> <FontAwesomeIcon icon={faSignInAlt} /></Link>
+              <Link to="/login"> <FontAwesomeIcon icon={faSignInAlt} /></Link>
             </li>
             {/* <li>
 <Link to="/login" className="profile-icon">

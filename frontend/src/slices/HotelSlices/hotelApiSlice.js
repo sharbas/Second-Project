@@ -18,6 +18,34 @@ export const hotelApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    updateHotelUser: builders.mutation({
+      query: (data) => ({
+        url: `${HOTELS_URL}/profile`,
+        method: "PUT",
+        body: data,
+      }),
+    }),
+    hotelForgotPassword: builders.mutation({
+      query: (data) => ({
+        url: `${USERS_URL}/forgotPassword`,
+        method: "PUT",
+        body: data,
+      }),
+    }),
+    hotelVerifyOtp: builders.mutation({
+      query: (data) => ({
+        url: `${USERS_URL}/verifyOtp`,
+        method: "POST",
+        body: data,
+      }),
+    }),
+    hotelResetPassword: builders.mutation({
+      query: (data) => ({
+        url: `${USERS_URL}/resetPassword`,
+        method: "POST",
+        body: data,
+      }),
+    }),
    
     logout: builders.mutation({
       query: (data) => ({
@@ -33,4 +61,8 @@ export const {
   useLoginMutation,
   useLogoutMutation,
   useRegisterMutation,
+  useHotelForgotPasswordMutation,
+  useHotelVerifyOtpMutation,
+  useHotelResetPasswordMutation,
+  useUpdateHotelUserMutation
 } = hotelApiSlice;
