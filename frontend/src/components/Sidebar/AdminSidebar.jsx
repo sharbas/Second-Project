@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import {BsFillArrowRightSquareFill} from "react-icons/bs";
 import "./AdminSidebar.css";
 import { useDispatch,useSelector } from "react-redux";
 import AdminHeader from "../Header/AdminHeader.jsx";
@@ -47,8 +48,9 @@ function AdminSidebar({toggleSidebar}) {
       <AdminHeader />
     { adminInfo &&  <aside className={` admin-sidebar ${isIconsOnly ? "icons-only" : ""}`}>
   
-        <div className="toggle-button" onClick={toggleIconsOnly}>
-          {isIconsOnly ? "☰" : "✖"}
+        <div className="" onClick={toggleIconsOnly}>
+          {isIconsOnly ? <BsFillArrowRightSquareFill className="w-4 h-4 "/> : "✖"}
+
         </div>
         
         <ul>

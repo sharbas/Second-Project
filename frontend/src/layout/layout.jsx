@@ -7,6 +7,8 @@ import HotelSidebar from "../components/Sidebar/HotelSidebar.jsx";
 import { useEffect, useState } from "react";
 import {  useSelector } from "react-redux"
 import UserFooter from "../components/footer/userFooter.jsx";
+import "./layout.css"
+
 
 function Layout() {
   let location = useLocation();
@@ -40,7 +42,7 @@ if(admin){
   return(
     <>
     <AdminSidebar toggleSidebar={toggleSidebar}/>
-    <div className={adminInfo?`content-container ${isSidebarOpen ? '' :'no-left-padding'}`:''} >
+    <div id="admin" className={adminInfo?`content-container ${isSidebarOpen ? '' :'no-left-padding'}`:''} style={{paddingTop:'5rem',width:'100%'}} >
        <Routers/>
     </div>
     </>

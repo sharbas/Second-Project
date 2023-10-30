@@ -19,8 +19,9 @@ import HotelSignUp from "../screens/Hotel/HotelSignup.jsx";
 import HotelForgotPassword from "../screens/Hotel/HotelForgotPassword.jsx";
 import HotelVerifyOtp from "../screens/Hotel/HotelVerifyOtp.jsx";
 import HotelResetPassword from "../screens/Hotel/HotelResetPassword.jsx";
-import HotelUserProfile from "../screens/Hotel/HotelUserProfile.jsx"
+// import HotelUserProfile from "../screens/Hotel/HotelUserProfile.jsx"
 import AddHotelDetails from "../screens/Hotel/AddHotelDetails.jsx";
+import HotelProfile from "../screens/Hotel/HotelProfile.jsx"
 
 //admin import
 import AdminLogin from "../screens/Admin/AdminLogin.jsx";
@@ -33,9 +34,10 @@ import AdminPrivateRoute from "../components/AdminPrivateRoute.jsx";
 import HotelPrivateRoute from "../components/HotelPrivate.jsx";
 import HotelManagement from "../screens/Admin/HotelManagement.jsx";
 import UserManagement from "../screens/Admin/UserManagement.jsx"
-import OtpLogin from "../screens/otpLogin.jsx";
-import OtpLoginEmail from "../screens/OtpLoginEmail.jsx";
+import OtpLogin from "../screens/otp/OtpLogin.jsx";
+import OtpLoginEmail from "../screens/otp/OtpLoginEmail.jsx";
 import NotFound from "../screens/NotFound.jsx";
+import NewPage from "../screens/Admin/newpage.jsx";
 
 
 const Routers = () => {
@@ -62,14 +64,15 @@ const Routers = () => {
       <Route path='/hotel/otpLoginEmail' element={<OtpLoginEmail/>}/>
       <Route path='/hotel/otpLogin' element={<OtpLogin/>}/>
       <Route path="/hotel" element={<HotelPrivateRoute/>}>
-        <Route path="home" element={<HotelHome />} />
-        <Route path="profile" element={<HotelUserProfile />} />
+        <Route path="home" element={<HotelHome/>} />
+        <Route path="myHotel" element={<HotelProfile/>} />
         <Route path="AddHotelDetails" element={<AddHotelDetails/>}/>
       </Route>
 
       <Route path="/admin/login" element={<AdminLogin />} />
       <Route path='/admin/otpLoginEmail' element={<OtpLoginEmail/>}/>
          <Route path='/admin/otpLogin' element={<OtpLogin/>}/>
+         <Route path='/new' element={<NewPage/>}/>
 
 
       <Route path="/admin" element={<AdminPrivateRoute/>}>
@@ -78,6 +81,7 @@ const Routers = () => {
         <Route path="userManagement" element={<UserManagement/>} />
          <Route path="packageAddForm" element={<PackageAddForm/>} /> 
          <Route path="PackageDetails" element={<PackageDetails/>} /> 
+
          
       </Route>
       <Route path="*" element={<NotFound/>} />

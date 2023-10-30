@@ -32,6 +32,6 @@ required:true
   }
 });
 
-const Package = mongoose.model('Package', packageSchema);
+const Packages = mongoose.model('Package', packageSchema);
 
-module.exports = Package;
+ export default Packages;

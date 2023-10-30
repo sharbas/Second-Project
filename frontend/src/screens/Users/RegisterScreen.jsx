@@ -5,6 +5,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { setCredentials } from "../../slices/authSlice.js";
 import './RegisterScreen.css'
 import userAxiosInstance from "../../utils/userAxiosInstance.js";
+import axios from "axios";
 // import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 // import image from '../../public/pexels-cottonbro-studio-4067753.jpg'
 
@@ -45,8 +46,9 @@ const RegisterScreen = () => {
       toast.error("Passwords do not match");
     } else {
       try {
-        const res = await userAxiosInstance.post('/register',{name,email,password})
-        console.log('hai it register');
+        console.log('this is submithanler try');
+        const res = await axios.post('http://localhost:5000/api/users/register',{name,email,password})
+        console.log('hai its register');
         dispatch(setCredentials({ ...res }));
         navigate("/login");
       } catch (error) {

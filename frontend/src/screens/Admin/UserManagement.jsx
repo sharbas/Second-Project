@@ -61,7 +61,7 @@ const [rows,setRows]=useState([])
   return (
     
     <>
-    <div className="data-grid-container">
+    <div className="data-grid-container"  style={{backgroundColor:'rgb(11 142 140)'}}>
       <DataGrid
         rows={rows}
         columns={columns}

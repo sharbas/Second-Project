@@ -1,9 +1,9 @@
 import { useState } from "react";
 import {useLocation,useNavigate} from "react-router-dom"
 import {toast} from "react-toastify"
-import userAxiosInstance from '../utils/userAxiosInstance.js'
-import hotelAxiosInstance from "../utils/hotelAxiosInstance.js"
-import adminAxiosInstance from '../utils/adminAxiosInstance.js';
+import userAxiosInstance from '../../utils/userAxiosInstance.js'
+import hotelAxiosInstance from "../../utils/hotelAxiosInstance.js"
+import adminAxiosInstance from '../../utils/adminAxiosInstance.js';
 
 function OtpLoginEmail(){
     const [email,setEmail]=useState('')

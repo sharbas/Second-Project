@@ -8,11 +8,12 @@
     padding-left: 30rem;
     margin: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    width :50rem;
+    
     /* height: 60rem; */
   }
   
@@ -25,6 +26,7 @@
   .form-group {
     display: flex;
     justify-content: center;
+
     align-items: center;
     margin-bottom: 15px;
     flex-wrap: wrap; /* Allow elements to wrap to the next line */
@@ -73,5 +75,8 @@
   
   .btn-primary:hover {
     background-color: #00b37d;
+  }
+  div .form-group label {
+    color: #fff;
   }
   

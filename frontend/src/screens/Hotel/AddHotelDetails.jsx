@@ -1,18 +1,18 @@
-// HotelDetails.js
 import React, { useState } from 'react';
-import './AddHotelDetails.css';
+import { toast } from 'react-toastify';
+import axios from 'axios';
 
 const AddHotelDetails = () => {
   const [formData, setFormData] = useState({
-    images: [],
     hotelName: '',
     roomType: '',
     roomPrice: '',
     packageLocation: '',
     address: '',
     contactNumber: '',
-    specialty: '',
+    speciality: '',
     services: '',
+    images: [],
   });
 
   const handleChange = (e) => {
@@ -25,79 +25,152 @@ const AddHotelDetails = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission here, e.g., send the data to a server or store in state
-    console.log(formData);
+    const formDataToSend = new FormData();
+    console.log(formData,'this is formdata');
+
+    formDataToSend.append('hotelName', formData.hotelName);
+    formDataToSend.append('roomType', formData.roomType);
+    formDataToSend.append('roomPrice', formData.roomPrice);
+    formDataToSend.append('packageLocation', formData.packageLocation);
+    formDataToSend.append('address', formData.address);
+    formDataToSend.append('contactNumber', formData.contactNumber);
+    formDataToSend.append('speciality', formData.speciality);
+    formDataToSend.append('services', formData.services);
+    // formDataToSend.append('packageLocation', formData.packageLocation)
+    for (const image of formData.images) {
+      formDataToSend.append('images', image);
+    }
+
+    try {
+      console.log('this is try  and fordatatosend',formDataToSend);
+      const res = await axios.post('http://localhost:5000/api/hotel/addHotelDetails', formDataToSend, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      toast.success(res.data.message);
+      setFormData({
+        images: [],
+        hotelName: '',
+        roomType: '',
+        roomPrice: '',
+        packageLocation: '',
+        address: '',
+        contactNumber: '',
+        speciality: '',
+        services: '',
+      });
+    } catch (error) {
+      toast.error(error.response?.data.message || error.message);
+    }
   };
 
   return (
-    <div className="hotel-form" style={{width:'70rem' }}>
-      <h2>Add Hotel Details</h2>
-      <form onSubmit={handleSubmit} className="form-grid">
-       
-        <div className="right-panel">
-          <div className="row">
-            <div className="column" style={{  width: '30rem' , borderRight: '1px solid #ccc', padding: '0 10px' }}>
-              <label htmlFor="hotelName">Hotel Name</label>
-              <input type="text" name="hotelName" value={formData.hotelName} onChange={handleChange} />
-            </div>
-            <div className="column" style={{  width: '30rem'}}>
-              <label htmlFor="roomType">Room Type</label>
-              <select name="roomType" value={formData.roomType} onChange={handleChange}>
-                <option value="1bhk">1 BHK</option>
-                <option value="2bhk">2 BHK</option>
-                <option value="3bhk">3 BHK</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-          </div>
-          <div className="row">
-            <div className="column" style={{  width: '30rem' , borderRight: '1px solid #ccc', padding: '0 10px' }}>
-              <label htmlFor="roomPrice">Room Price</label>
-              <input type="number" name="roomPrice" value={formData.roomPrice} onChange={handleChange} />
-            </div>
-            <div className="column" style={{  width: '30rem'}}>
-              <label htmlFor="packageLocation">Package Location</label>
-              <select name="packageLocation" value={formData.packageLocation} onChange={handleChange}>
-                <option value="location1">Location 1</option>
-                <option value="location2">Location 2</option>
-                <option value="location3">Location 3</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-          </div>
-          <div className="row">
-  <div className="column" style={{ width: '30rem', borderRight: '1px solid #ccc', padding: '0 10px' }}>
-    <label htmlFor="address">Address</label>
-    <input type="text" name="address" value={formData.address} onChange={handleChange} />
-  </div>
-  <div className="column" style={{ width: '30rem', padding: '0 10px' }}>
-    <label htmlFor="contactNumber">Contact Number</label>
-    <input type="text" name="contactNumber" value={formData.contactNumber} onChange={handleChange} />
-  </div>
-</div>
-
-          <div className="row" >
-            <div className="column" style={{  width: '30rem', borderRight: '1px solid #ccc' ,padding: '0 10px'}}>
-              <label htmlFor="specialty">Enter Specialty</label>
-              <textarea name="specialty" value={formData.specialty} onChange={handleChange} />
-            </div>
-            <div className="column" style={{  width: '30rem',padding: '0 10px'}}>
-              <label htmlFor="services" >Enter Services</label>
-              <textarea name="services" value={formData.services} onChange={handleChange} />
-            </div>
-          </div>
+    <div className="container mx-auto mt-10 p-6">
+      <h2 className="text-2xl font-semibold">Add Hotel Details</h2>
+      <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-4">
+        <div className="col-span-1">
+          <label htmlFor="images" className="block text-gray-600">Images of Room</label>
+          <input
+            type="file"
+            name="images"
+            onChange={handleChange}
+            multiple
+            className="block w-full px-4 py-2 bg-gray-100 border rounded"
+            accept="image/*"
+          />
         </div>
-        <div className="left-panel" style={{paddingLeft:'20rem'}}>
-          <label htmlFor="images">Images of Room</label>
-          <br />
-          <input type="file" name="images" onChange={handleChange} multiple style={{  width: '10rem'}} />
-         <div>
-          <button type="submit" className="btn btn-primary">
+
+        <div className="col-span-1">
+          <label htmlFor="hotelName" className="block text-gray-600">Hotel Name</label>
+          <input
+            type="text"
+            name="hotelName"
+            value={formData.hotelName}
+            onChange={handleChange}
+            className="block w-full px-4 py-2 bg-gray-100 border rounded"
+          />
+        </div>
+
+        <div className="col-span-1">
+          <label htmlFor="roomType" className="block text-gray-600">Room Type</label>
+          <select name="roomType" value={formData.roomType} onChange={handleChange} className="block w-full px-4 py-2 bg-gray-100 border rounded">
+            <option value="1bhk">1 BHK</option>
+            <option value="2bhk">2 BHK</option>
+            <option value="3bhk">3 BHK</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div className="col-span-1">
+          <label htmlFor="roomPrice" className="block text-gray-600">Room Price</label>
+          <input
+            type="number"
+            name="roomPrice"
+            value={formData.roomPrice}
+            onChange={handleChange}
+            className="block w-full px-4 py-2 bg-gray-100 border rounded"
+          />
+        </div>
+
+        <div className="col-span-1">
+          <label htmlFor="packageLocation" className="block text-gray-600">Package Location</label>
+          <select name="packageLocation" value={formData.packageLocation} onChange={handleChange} className="block w-full px-4 py-2 bg-gray-100 border rounded">
+            <option value="location1">Location 1</option>
+            <option value="location2">Location 2</option>
+            <option value="location3">Location 3</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div className="col-span-1">
+          <label htmlFor="address" className="block text-gray-600">Address</label>
+          <input
+            type="text"
+            name="address"
+            value={formData.address}
+            onChange={handleChange}
+            className="block w-full px-4 py-2 bg-gray-100 border rounded"
+          />
+        </div>
+
+        <div className="col-span-1">
+          <label htmlFor="contactNumber" className="block text-gray-600">Contact Number</label>
+          <input
+            type="text"
+            name="contactNumber"
+            value={formData.contactNumber}
+            onChange={handleChange}
+            className="block w-full px-4 py-2 bg-gray-100 border rounded"
+          />
+        </div>
+
+        <div className="col-span-2">
+          <label htmlFor="speciality" className="block text-gray-600">Enter speciality</label>
+          <textarea
+            name="speciality"
+            value={formData.speciality}
+            onChange={handleChange}
+            className="block w-full px-4 py-2 bg-gray-100 border rounded"
+          ></textarea>
+        </div>
+
+        <div className="col-span-2">
+          <label htmlFor="services" className="block text-gray-600">Enter Services</label>
+          <textarea
+            name="services"
+            value={formData.services}
+            onChange={handleChange}
+            className="block w-full px-4 py-2 bg-gray-100 border rounded"
+          ></textarea>
+        </div>
+
+        <div className="col-span-2">
+          <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
             Add Hotel
           </button>
-          </div>
         </div>
       </form>
     </div>

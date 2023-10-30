@@ -34,36 +34,44 @@ if(user && (await user.matchPassword(password))){
 // @access Public
 
 
-const registerUser=asyncHandler(async(req,res)=>{
-    const {name,email,password}=req.body
-    const userExists=await User.findOne({email})
-    if(userExists){
-        res.status(400)
-        console.log(name,email,password,'user exist ');
-        throw new Error('User already exists backend')
-    }
-      // Password validation
-  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
-  if (!password.match(passwordRegex)) {
-    res.status(400);
-    throw new Error('Password must contain 8 characters, at least 1 uppercase letter, 1 lowercase letter and 1 digit.');
-  }
-const user=await User.create({
-    name,
-    email,
-    password
-})
-if(user ){
-   const userToken= generateToken(res,user._id)
-    res.status(201).json({
-        userToken
-    })
-}else{
-   res.status(401)
-   throw new Error('Invalid emial or password') 
-}
+const registerUser = asyncHandler(async (req, res) => {
+    console.log('hai this is register');
+    const { name, email, password } = req.body;
+    const userExists = await User.findOne({ email });
   
-})
+    if (userExists) {
+      res.status(400);
+      console.log(name, email, password, 'user exists');
+      throw new Error('User already exists backend');
+    }
+  
+    // Password validation
+    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+    if (!password.match(passwordRegex)) {
+      res.status(400);
+      throw new Error('Password must contain 8 characters, at least 1 uppercase letter, 1 lowercase letter and 1 digit.');
+    }
+  
+    let userToken; // Declare userToken variable
+  
+    const user = await User.create({
+      name,
+      email,
+      password,
+    });
+  
+    if (user) {
+      userToken = generateToken(res, user._id); // Assign userToken inside the if block
+      console.log(userToken, 'this is userToken in the if condition');
+      res.status(201).json({
+        userToken,
+      });
+    } else {
+      res.status(401);
+      throw new Error('Invalid email or password');
+    }
+  });
+  
 
 const verifyEmail=asyncHandler(async(req,res)=>{
 const {email}=req.body

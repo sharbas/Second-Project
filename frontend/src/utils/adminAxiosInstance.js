@@ -4,6 +4,7 @@ import axios from "axios";
 const adminAxiosInstance = axios.create({
     baseURL: 'http://localhost:5000/api/admin', // Replace with your API URL
     headers: {
+      
       'Content-Type': 'application/json',
       withCredentials: true, // If needed for cross-origin requests
     },

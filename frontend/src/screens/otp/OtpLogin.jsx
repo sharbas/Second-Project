@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import  adminAxiosInstance  from '../utils/adminAxiosInstance.js';
-import hotelAxiosInstance from '../utils/hotelAxiosInstance.js';
-import userAxiosInstance from '../utils/userAxiosInstance.js';
+import  adminAxiosInstance  from '../../utils/adminAxiosInstance.js';
+import hotelAxiosInstance from '../../utils/hotelAxiosInstance.js';
+import userAxiosInstance from '../../utils/userAxiosInstance.js';
 import { useDispatch } from 'react-redux';
-import { setCredentials as adminSetCredentials } from '../slices/AdminSlices/adminAuthSlice.js';
-import {setCredentials as hotelSetCredentials }from '../slices/HotelSlices/hotelAuthSlice.js'
-import {setCredentials as userSetCredentials}  from '../slices/authSlice.js'
+import { setCredentials as adminSetCredentials } from '../../slices/AdminSlices/adminAuthSlice.js';
+import {setCredentials as hotelSetCredentials }from '../../slices/HotelSlices/hotelAuthSlice.js'
+import {setCredentials as userSetCredentials}  from '../../slices/authSlice.js'
 
 function OtpLogin() {
     const [otp, setOtp] = useState("");

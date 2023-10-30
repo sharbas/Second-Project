@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./HotelSidebar.css";
 import HotelHeader from "../Header/HotelHeader.jsx";
-import { FaHotel, FaPlus, FaPaperPlane, FaSignOutAlt } from "react-icons/fa";
+import {FaHome, FaHotel, FaPlus, FaPaperPlane, FaSignOutAlt } from "react-icons/fa";
 import { useDispatch,useSelector } from "react-redux";
 import hotelAxiosInstance from "../../utils/hotelAxiosInstance";
 import { logout } from "../../slices/HotelSlices/hotelAuthSlice";
@@ -37,6 +37,17 @@ navigate('/hotel/login')
           {isIconsOnly ? "☰" : "✖"}
         </div>
         <ul>
+        <li>
+  <Link to="/hotel/home"> {/* Replace with the correct path */}
+    <div className="d-flex">
+      <FaHome className="sidebar-icon" /> {/* Replace with the correct icon */}
+      <span className={`menu-text ${isIconsOnly ? "hidden" : ""}`}>
+        Home
+      </span>
+    </div>
+  </Link>
+</li>
+
           <li>
             <Link to='/hotel/AddHotelDetails'>
             <div className="d-flex" >
@@ -48,6 +59,7 @@ navigate('/hotel/login')
             </Link>
           </li>
           <li>
+            <Link to='/hotel/myHotel'>
           <div className="d-flex" >
             <FaHotel
               className={`sidebar-icon ${isIconsOnly ? "hidden" : ""}`}
@@ -56,6 +68,7 @@ navigate('/hotel/login')
               My Hotel
             </span>
             </div>
+            </Link>
           </li>
           <li>
           <div className="d-flex" >

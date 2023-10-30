@@ -13,10 +13,13 @@
     left: 0;
     transition: transform 0.3s ease;
   }
+  
   .hotel-sidebar a {
     text-decoration: none; /* Remove underline */
     color: white /* Set your preferred color */
   }
+
+
   
   .toggle-button {
     cursor: pointer;

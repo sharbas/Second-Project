@@ -53,6 +53,7 @@ const adminLoadHotelUsers=asyncHandler(async(req,res)=>{
     const hotelUsers=await Hotel.find({},'name email _id isBlocked')
     console.log(hotelUsers,'hotelUsers');
     if(hotelUsers.length>0){
+        console.log('this is if of hoteluser.length');
 res.status(201).json({hotelUsers})
     }else{
         res.status(404).json('Not found')
@@ -69,6 +70,8 @@ const blockUnblockUser=asyncHandler(async(req,res)=>{
    const user=await User.updateOne({_id:userId},{$set:{isBlocked:isBlocked}})
 
 })
+
+
 
 
 export {authadmin,logoutAdmin,adminLoadUsers,adminLoadHotelUsers,blockUnblockUser,blockUnblockHotelUser}
