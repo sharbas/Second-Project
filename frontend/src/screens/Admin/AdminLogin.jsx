@@ -25,7 +25,8 @@ const AdminLogin = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    try {
+    try {  
+      
    
         const res = await axios.post('http://localhost:5000/api/admin/auth', { email, password });
         console.log('res',res.data)

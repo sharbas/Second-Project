@@ -13,12 +13,14 @@ const hotelAxiosInstance = axios.create({
   hotelAxiosInstance.interceptors.request.use(
     async (config) => {
       const hotelInfo = localStorage.getItem('hotelInfo');
-      const token=hotelInfo.hotelToken
+      const parsedHotelInfo = JSON.parse(hotelInfo); // Parse the JSON string
+      const token=parsedHotelInfo.hotelToken
+      // Authorization = `Bearer ${token}`
       console.log('hotelToken',token)
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
       }
-  
+  console.log('end of an era');
       return config;
     },
     (error) => {

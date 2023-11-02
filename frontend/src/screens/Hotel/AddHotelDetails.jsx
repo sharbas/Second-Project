@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
+
 
 const AddHotelDetails = () => {
   const [formData, setFormData] = useState({
@@ -15,7 +17,10 @@ const AddHotelDetails = () => {
     images: [],
   });
 
+  const hotelUserID=useSelector(state=>(state.hotelauth._id))
+
   const handleChange = (e) => {
+    console.log(hotelUserID,'this is hotelUserId');
     const { name, value, type } = e.target;
     if (type === 'file') {
       const selectedImages = Array.from(e.target.files);
@@ -24,6 +29,7 @@ const AddHotelDetails = () => {
       setFormData({ ...formData, [name]: value });
     }
   };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -45,8 +51,13 @@ const AddHotelDetails = () => {
 
     try {
       console.log('this is try  and fordatatosend',formDataToSend);
+      let hotelInfo =JSON.parse(localStorage.getItem('hotelInfo')) ;
+      console.log(hotelInfo,'thwis is hotelInfo');
+      const token=hotelInfo.hotelToken
+      console.log('this is token',token);
       const res = await axios.post('http://localhost:5000/api/hotel/addHotelDetails', formDataToSend, {
         headers: {
+          'Authorization' : `Bearer ${token}`,
           'Content-Type': 'multipart/form-data',
         },
       });

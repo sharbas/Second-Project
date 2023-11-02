@@ -20,9 +20,9 @@ import sendResetMail from "../utils/nodeMailer.js"
         console.log('blocked is working');
     }
       res.status(201).json({
-        _id: hotel._id,
-        name:hotel.name,
-        email: hotel.email,
+       
+     
+        hotelToken,
         message: 'Authentication successful',
       });
     } else {

@@ -9,7 +9,7 @@ import { protect } from '../middleware/authMiddleware.js'
 router.post('/register',registerUser)
 router.post('/auth',authUser)
 router.post('/logout',logoutUser)
-router.route('/profile')
+router.route('/profile')  
 .get(protect,getUserProfile)
 .put(protect,updateUserProfile)
 router.put('/forgotPassword',verifyEmail)
@@ -17,7 +17,6 @@ router.post('/verifyOtp',confirmOtp)
 router.post('/resetPassword',resetPassword)
 router.post('/otpLoginVerifyEmail',otpLoginVerifyEmail)
 router.post('/otpLogin',otpLogin)
-
 
 
 

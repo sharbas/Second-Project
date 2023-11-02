@@ -63,6 +63,7 @@ res.status(201).json({hotelUsers})
 const blockUnblockHotelUser=asyncHandler(async(req,res)=>{
     const {userId,isBlocked}=req.body
     const hotelUser=await User.UpdateOne({_id:userId},{$set:{isBlocked:isBlocked}})
+    res.status(200)
 })
 
 const blockUnblockUser=asyncHandler(async(req,res)=>{
