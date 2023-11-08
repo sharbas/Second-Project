@@ -6,7 +6,11 @@ export default {
       colors: {
         userBgColor: '#efebe2',
         adminBgColor: 'rgb(11 142 140)',
+        inputModal:'#4c4e4e'
       },
+      customMaxHeight: {
+        modalHeight:'120rem', /* Set your desired maximum height here */
+      }
     },
   },
   plugins: [],

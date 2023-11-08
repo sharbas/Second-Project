@@ -49,25 +49,33 @@ const addPackageDetails = asyncHandler(async (req, res) => {
 
   const updatePackage = async (req, res) => {
     try {
-  
-      const { category, place, shortDescription, detailedDescription, duration, price,images } = req.body;
+      const { category, place, shortDescription, detailedDescription, duration, price } = req.body;
       const Images = req.files['images'];
       const imagePaths = Images.map((image) => image.filename);
+  
+      const tourPackage = await Packages.findOne({ _id: req.body._id });
+  
       const categoryImage = req.files['categoryImages'][0].filename;
   
       const updatePackageDetails = {
-        category: category,
-        categoryImages: categoryImage ? categoryImage : tourPackage.categoryImages,
-        place: place,
-        shortDescription: shortDescription,
-        detailedDescription: detailedDescription,
-        duration: duration,
-        price: price,
+        category: category ? category : tourPackage.category,
+        place: place ? place : tourPackage.place,
+        shortDescription: shortDescription ? shortDescription : tourPackage.shortDescription,
+        detailedDescription: detailedDescription ? detailedDescription : tourPackage.detailedDescription,
+        duration: duration ? duration : tourPackage.duration ,
+        price: price ? price : tourPackage.price,
         images: imagePaths ? imagePaths : tourPackage.images,
-        _id: req.body._id
+        categoryImages: categoryImage ? categoryImage : tourPackage.categoryImages,
       };
-      const saveDetails = await Packages.findByIdAndUpdate({_id:req.body._id, updatePackageDetails}, { new: true });
   
+      // Remove _id from the update object
+      delete updatePackageDetails._id;
+  
+      const saveDetails = await Packages.findByIdAndUpdate(
+        req.body._id, // Use the ID to identify the document to update
+        updatePackageDetails, // Update object
+        { new: true }
+      );
       if (saveDetails) {
         res.status(200).json({ message: 'Package updated successfully', saveDetails });
       } else {
@@ -77,6 +85,7 @@ const addPackageDetails = asyncHandler(async (req, res) => {
       res.status(500).json({ error: 'An error occurred while processing your request.' });
     }
   }
+  
   
 
 export {

@@ -13,6 +13,7 @@ const PackageDetails = () => {
 
 
 
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -25,15 +26,17 @@ const PackageDetails = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [editedPackage]);
 
   
   const handleChange = (e) => {
     const { name, value, type } = e.target;
     if (name === "categoryImages") {
+      console.log('hai evidae ndd categoryImages');
       const selectedImages = Array.from(e.target.files);
       setEditedPackage({ ...editedPackage, [name]: selectedImages });
     } else if (name === "images") {
+      console.log('ahi this is image else if');
       const selectedImages = Array.from(e.target.files);
       setEditedPackage({ ...editedPackage, [name]: selectedImages });
     } else {
@@ -41,11 +44,14 @@ const PackageDetails = () => {
     }
   };
 
+
   useEffect(()=>{
   const updateData=async()=>{
     const formDataToSend = new FormData();
     for (const key in editedPackage) {
-      if (key === 'categoryImages' || key === 'images') {
+      if (key === 'categoryImages') {
+        formDataToSend.append(key, editedPackage[key][0]);
+      } else if (key === 'images') {
         for (const image of editedPackage[key]) {
           formDataToSend.append(key, image);
         }
@@ -53,7 +59,12 @@ const PackageDetails = () => {
         formDataToSend.append(key, editedPackage[key]);
       }
     }
-
+    
+//     console.log("FormData contents:");
+// for (const pair of formDataToSend.entries()) {
+//   console.log(pair[0] + ": " + pair[1]);
+// }
+console.log(formDataToSend,'thisi is formdatatosend');
     try{
       const res=await axios.put('http://localhost:5000/api/admin/updatePackage',formDataToSend, {
         headers: {
@@ -92,10 +103,9 @@ const PackageDetails = () => {
     setEditModalIsOpen(false);
   };
 
-
   const saveEdits = async() => {    
     setEditModalIsOpen(false);
-    const res=await adminAxiosInstance.put('/updatePackage',editedPackage)
+    // const res=await adminAxiosInstance.put('/updatePackage',editedPackage)
   };
 
   return (
@@ -218,7 +228,7 @@ const PackageDetails = () => {
 
 
          {editModalIsOpen && (
-        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+        <div className="fixed inset-0 flex items-center justify-center z-50 max-h-full overflow-y-scroll pt-10">
           <div className="bg-white p-4 rounded-lg shadow-lg">
             <h2 className="text-2xl font-semibold mb-2">Edit Package</h2>
             <div className="mb-4">
@@ -227,21 +237,23 @@ const PackageDetails = () => {
               </label>
               <input
   type="text"
-  className="form-input border border-black" // Add the Tailwind CSS classes
+  className="form-input border border-black p-2 rounded  focus:outline-none focus:ring focus:ring-blue-400 hover:border-blue-400 pl-10 transition"// Add the Tailwind CSS classes
+  style={{ width: "82ch" , height:'2rem' }}
   id="category"
+  pattern="[A-Z][a-zA-Z]*"
   name="category"
   defaultValue={editedPackage.category}
   onChange={handleChange }
 />
 
-               <label htmlFor="categoryImage" className="block text-gray-700">
+               <label htmlFor="categoryImages" className="block text-gray-700">
                 Category image
               </label>
               <input
                 type="file"
                 className="form-input"
-                id="categoryImage"
-                name="categoryImage"
+                id="categoryImages"
+                name="categoryImages"
                 // defaultValue={editedPackage.categoryImage}
                 onChange={handleChange }
               />
@@ -250,8 +262,10 @@ const PackageDetails = () => {
               </label>
               <input
   type="text"
-  className="form-input border border-black" // Add the Tailwind CSS classes
+  className="form-input border border-black p-2 rounded  focus:outline-none focus:ring focus:ring-blue-400 hover:border-blue-400 pl-10 transition"// Add the Tailwind CSS classes
+  style={{ width: "82ch" , height:'2rem' }}
   id="place"
+  pattern="[A-Z][a-zA-Z]*"
   name="place"
   defaultValue={editedPackage.place}
   onChange={handleChange}
@@ -260,26 +274,32 @@ const PackageDetails = () => {
 <label htmlFor="shortDescription" className="block text-gray-700">
                 shortDescription
               </label>
-              <input
+             <textarea
   type="text"
-  className="form-input border border-black" // Add the Tailwind CSS classes
+  className="form-input border border-black p-2 rounded  focus:outline-none focus:ring focus:ring-blue-400 hover:border-blue-400 pl-10 transition"// Add the Tailwind CSS classes
   id="shortDescription"
+  pattern="[A-Z][a-zA-Z]*"
   name="shortDescription"
   defaultValue={editedPackage.shortDescription}
   onChange={handleChange}
+  rows={5}
+  cols={80}
 />
 
 <label htmlFor="detailedDescription" className="block text-gray-700">
-                detailedDescription
-              </label>
-              <input
-  type="text"
-  className="form-input border border-black" // Add the Tailwind CSS classes
+  detailedDescription
+</label>
+<textarea
+  className="form-input border border-black p-2 rounded  focus:outline-none focus:ring focus:ring-blue-400 hover:border-blue-400 pl-10 transition"// Add the Tailwind CSS classes
   id="detailedDescription"
+  pattern="[A-Z][a-zA-Z]*"
   name="detailedDescription"
   defaultValue={editedPackage.detailedDescription}
   onChange={handleChange}
-/>
+  rows={5} // You can adjust the number of rows as needed
+  cols={80} // You can adjust the number of columns as needed
+></textarea>
+
 
 <label htmlFor="images" className="block text-gray-700">
                 images
@@ -300,9 +320,11 @@ const PackageDetails = () => {
               </label>
               <input
   type="number"
-  className="form-input border border-black" // Add the Tailwind CSS classes
+  className="form-input border border-black p-2 rounded  focus:outline-none focus:ring focus:ring-blue-400 hover:border-blue-400 pl-10 transition"// Add the Tailwind CSS classes
+  style={{ width: "82ch" , height:'2rem' }}
   id="duration"
   name="duration"
+  min={0}
   defaultValue={editedPackage.duration}
   onChange={handleChange}
 />
@@ -312,9 +334,11 @@ const PackageDetails = () => {
               </label>
               <input
   type="number"
-  className="form-input border border-black" // Add the Tailwind CSS classes
+  className="form-input border border-black p-2 rounded  focus:outline-none focus:ring focus:ring-blue-400 hover:border-blue-400 pl-10 transition"// Add the Tailwind CSS classes
+  style={{ width: "82ch" , height:'2rem' }}
   id="price"
   name="price"
+  min={0}
   defaultValue={editedPackage.price}
   onChange={handleChange}
 />

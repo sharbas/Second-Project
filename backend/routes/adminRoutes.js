@@ -18,6 +18,6 @@ router.post('/addPackageDetails', upload.fields([
 router.get('/adminLoadPackages',adminLoadPackages)
 router.put('/updatePackage',upload.fields([
   { name: 'categoryImages', maxCount: 1 }, // Max 1 file for category image
-  { name: 'images', maxCount: 5 }, // Max 3 files for package images
+  { name: 'images' }, // Max 3 files for package images
 ]),updatePackage)
 export default router
