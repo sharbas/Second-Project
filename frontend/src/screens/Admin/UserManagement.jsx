@@ -46,11 +46,11 @@ useEffect(()=>{
 
 const fetchData=async()=>{
   try{
-    console.log('this is fetchdata try block');
+    
 const res=await adminAxiosInstance.get('/loadUsers')
-console.log('resssss',res);
+
 setRows([...res.data.users])
-console.log(res.data.users);
+
   }catch(error){
 console.error("Error fetching data:",error)
   }

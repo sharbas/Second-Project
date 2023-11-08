@@ -46,9 +46,7 @@ const RegisterScreen = () => {
       toast.error("Passwords do not match");
     } else {
       try {
-        console.log('this is submithanler try');
         const res = await axios.post('http://localhost:5000/api/users/register',{name,email,password})
-        console.log('hai its register');
         dispatch(setCredentials({ ...res }));
         navigate("/login");
       } catch (error) {
@@ -83,7 +81,7 @@ const RegisterScreen = () => {
                 Remember me
               </label>
             </div>            <div className='d-grid mt-2'>
-              <button type="submit" className='btn btn-primary mb-3'>Sign Up</button>
+              <button type="submit" className='btn bg-primary text-white mb-3'>Sign Up</button>
             </div>
             <p className='text-end mt-2'>
               <Link to='/login' className='ms-2' style={{textDecoration:'none'}}>Sign In</Link>

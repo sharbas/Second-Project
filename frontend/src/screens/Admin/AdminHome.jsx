@@ -21,7 +21,7 @@ const Dashboard = () => {
   const colors = ['#0088FE', '#00C49F', '#FFBB28'];
 
   return (
-    <Container>
+    <Container >
       <div className=' pl-24'>
       <Typography variant="h4" component="h1" gutterBottom>
         Dashboard

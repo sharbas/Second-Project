@@ -5,6 +5,11 @@ const packageSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  categoryImages:
+    {
+      type:String
+    },
+  
   place: {
     type: String,
     required: true,

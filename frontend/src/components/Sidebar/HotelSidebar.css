@@ -9,8 +9,10 @@
     z-index: 1;
     display: flex;
     flex-direction: column;
-    top: 120px;
+    top: 75px;
     left: 0;
+    margin: 0; /* Remove margin */
+    padding: 0; /* Remove padding */
     transition: transform 0.3s ease;
   }
   
@@ -53,7 +55,7 @@
   }
   
   .hotel-sidebar li.logout-button:hover {
-    border-color: #dc3545; 
+    border-color:#dc3545;; 
   }
   
   .hotel-sidebar li:hover {

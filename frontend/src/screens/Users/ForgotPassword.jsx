@@ -17,7 +17,7 @@ function ForgotPassword(){
 
         try{
             const res=await forgotPassword({email}).unwrap()
-console.log(res);
+
 navigate('/verifyOtp',{state:email})
         }catch(error){
             toast.error(error?.data||error.error)

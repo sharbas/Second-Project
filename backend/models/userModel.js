@@ -22,6 +22,10 @@ const userSchema=mongoose.Schema({
     isBlocked:{
         type:Boolean,
         default:false
+    },
+    profileImage: {
+        type: String, // You can store the image path or a unique identifier
+        // default: 'default.jpg' // Default image for new users, change as needed
     }
 
 },{timestamps:true})

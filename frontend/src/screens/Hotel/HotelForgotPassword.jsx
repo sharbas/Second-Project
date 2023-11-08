@@ -6,7 +6,7 @@ import './HotelLogin.css'
 
 
 function HotelForgotPassword(){
-    console.log('hai HotelForgotPassword');
+  
     const [email,setEmail]=useState('')
 
     
@@ -18,8 +18,6 @@ function HotelForgotPassword(){
 
         try{
             const res=await hotelAxiosInstance.put('/forgotPassword',{email})
-            console.log('this is hotel forgot password dsf');
-console.log(res);
 navigate('/hotel/verifyOtp',{state:email})
         }catch(error){
             toast.error(error?.data||error.error)

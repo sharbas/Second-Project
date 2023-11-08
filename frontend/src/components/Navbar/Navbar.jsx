@@ -23,7 +23,7 @@ const navigate=useNavigate()
   const isHomeRoute = location.pathname === '/'
   const navLinks = [
     { id: 1, text: 'Home', path: '/' },
-    { id: 2, text: 'packages & destination', path: '/packages&destinaion' },
+    { id: 2, text: 'packages & destination', path: '/packages&destination' },
     { id: 3, text: 'contact', path: '/contact' },
     
 

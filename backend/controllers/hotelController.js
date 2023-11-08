@@ -10,14 +10,11 @@ import sendResetMail from "../utils/nodeMailer.js"
   try {
     const { email, password } = req.body;
     const hotel = await Hotel.findOne({ email });
-    console.log('this is hotel auth',hotel);
     if (hotel && (await hotel.matchPassword(password))) {
-        console.log('sdfkhefi#######################');
       // Authentication successful
       const hotelToken= hotelGenerateToken(res, hotel._id);
       if(hotel.isBlocked===true){
         res.status(403).json({message:'you are blocked'})
-        console.log('blocked is working');
     }
       res.status(201).json({
        
@@ -26,7 +23,6 @@ import sendResetMail from "../utils/nodeMailer.js"
         message: 'Authentication successful',
       });
     } else {
-        console.log('this is error else');
       res.status(401).json({ message: "Invalid email or password" });
     }
   } catch (error) {
@@ -37,7 +33,6 @@ import sendResetMail from "../utils/nodeMailer.js"
 
 
   const  register=asyncHandler(async(req,res)=>{
-        console.log('hai hotel is here in the register');
         const {name,email,password}=req.body
         const hotelExists=await Hotel.findOne({email})
 
@@ -67,21 +62,19 @@ import sendResetMail from "../utils/nodeMailer.js"
 
     const verifyEmail=asyncHandler(async(req,res)=>{
         const {email}=req.body
-        console.log('hai this is verify email');
         const hotel=await Hotel.findOne({email})
         const token1 = Math.floor(100000 + Math.random() * 900000).toString()
         const otpExpiration=new Date(Date.now()+1*120*1000)
         if(hotel){
-        console.log('hai this is verify email if hotel');
 
             hotel.otp=token1
             hotel.otpExpiration=otpExpiration
             await hotel.save()
             sendResetMail(hotel.name,email,hotel.otp)
-            console.log(email,'hai verifyemail');
+        
             res.status(200).json('its working')
         }else{
-            console.log('hai this is verify email else hotel');
+        
             res.status(400).json("User not found")
         }
             
@@ -89,7 +82,7 @@ import sendResetMail from "../utils/nodeMailer.js"
         
         
         const confirmOtp=asyncHandler(async(req,res)=>{
-            console.log('hai this is confirmOtp');
+      
         const {state,otp}=req.body
         const hotel=await Hotel.findOne({email:state})
         if(hotel.otp==otp){
@@ -102,9 +95,9 @@ import sendResetMail from "../utils/nodeMailer.js"
         
         
         const resetPassword=asyncHandler(async(req,res)=>{
-            console.log('this is reset password');
+      
             const {state,password}=req.body
-            console.log(state,'pass',password);
+          
             const hotel=await Hotel.findOne({email:state})
             if(hotel){
                 hotel.password=password
@@ -119,7 +112,7 @@ import sendResetMail from "../utils/nodeMailer.js"
             http:true,
             expires:new Date(0)
         })
-        res.status(200).json({message:'Logout Doctor success'})
+        res.status(200).json({message:'Logout Hotel Successfull'})
     })
 
 
@@ -135,7 +128,7 @@ import sendResetMail from "../utils/nodeMailer.js"
 
 
     const updateHotelUserProfile=asyncHandler(async(req,res)=>{
-      console.log(req.body.email,req.body.name );
+ 
   const hotel=await Hotel.findById(req.hotel._id)
   
   if(hotel){

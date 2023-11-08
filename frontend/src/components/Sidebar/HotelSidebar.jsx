@@ -32,7 +32,7 @@ navigate('/hotel/login')
   return (
     <>
       <HotelHeader />
-    { hotelInfo && <aside className={`hotel-sidebar ${isIconsOnly ? "icons-only" : ""}`}>
+    { hotelInfo && <aside className={`hotel-sidebar ${isIconsOnly ? "icons-only" : ""}`} >
         <div className="toggle-button" onClick={toggleIconsOnly}>
           {isIconsOnly ? "☰" : "✖"}
         </div>

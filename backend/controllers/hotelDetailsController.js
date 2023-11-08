@@ -4,7 +4,6 @@ import Hotel from '../models/hotelModel.js'
 const addHotelDetails = asyncHandler(async (req, res) => {
     try {
   
-  
       const { hotelName, roomType, roomPrice, packageLocation, address, contactNumber, speciality, services } = req.body;
      
   
@@ -41,8 +40,8 @@ const addHotelDetails = asyncHandler(async (req, res) => {
   
 
 const loadHotel=asyncHandler(async(req,res)=>{
-   console.log(req.user._id,'this is user id'); 
-   const hotel=await HotelDetails.find({})
+   const hotel=await HotelDetails.find({
+    hotelUserId:req.user._id})
    const hotelUser=await Hotel.find({_id:req.user._id})
     if(hotel){
         res.status(200).json({hotel:hotel,hotelUser })
@@ -55,7 +54,6 @@ const loadHotel=asyncHandler(async(req,res)=>{
 
 const updateDetails = asyncHandler(async (req, res) => {
     try {
-      console.log('this is updateDetails');
       const {
         hotelName,
         roomType,
@@ -67,8 +65,6 @@ const updateDetails = asyncHandler(async (req, res) => {
         services,
        
       } = req.body;
-      console.log(hotelName,'this is hotel name');
-  console.log(req.body._id,'this is the id');
       const updatedHotelDetails = await HotelDetails.updateOne(
         { _id: req.body._id },
         {

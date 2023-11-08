@@ -16,7 +16,7 @@ function VerifyOtp(){
         try{
             const res=await Otpverify({state,otp}).unwrap()
             navigate('/resetPassword',{state:state})
-
+toast.success('success')
         }catch(error){
             toast.error(error?.data||error.error)
         }

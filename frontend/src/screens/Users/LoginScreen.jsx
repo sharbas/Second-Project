@@ -16,9 +16,6 @@ const LoginScreen = () => {
   const dispatch = useDispatch();
 
   const [login] = useLoginMutation();
-  // , { isLoading }
-  // const [googleLogin] = useGoogleLoginMutation();
-// , { loginLoading }
 
   const { userInfo } = useSelector((state) => state.auth);
 
@@ -40,9 +37,9 @@ const LoginScreen = () => {
     e.preventDefault();
     try {
       const res = await login({ email, password }).unwrap();
-      
       dispatch(setCredentials({ ...res }));
       navigate("/");
+      toast.success(res.message)
     } catch (err) {
       toast.error(err?.data?.message || err.error);
     }
@@ -62,7 +59,7 @@ const LoginScreen = () => {
           <input type="password" name="password" placeholder='Enter password' className='form-control' value={password} onChange={(e) => setPassword(e.target.value)} />
         </div>
         <div className='d-grid'>
-          <button type="submit" className='btn btn-primary mb-3' >
+          <button type="submit" className='btn bg-primary text-white mb-3' >
             Sign In
           </button>
         </div>

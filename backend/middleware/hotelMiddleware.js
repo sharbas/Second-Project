@@ -4,7 +4,7 @@ import Hotel from "../models/hotelModel.js";
 const hotelAuthCheck = async (req, res, next) => {
   // Retrieve the hotelToken from the "Authorization" header
   const hotelToken = req.headers.authorization;
-console.log('this is hotelauthcheck second not',hotelToken);
+
   if (hotelToken) {
     try {
       // Remove the "Bearer " prefix from the hotelToken (if present)
@@ -17,7 +17,7 @@ console.log('this is hotelauthcheck second not',hotelToken);
       req.user = await Hotel.findById(decoded.hotelId).select('-password');
 
       next();
-      console.log('hai this is next()');
+    
     } catch (error) {
       console.error(error);
       // Define the error as an object with a message property

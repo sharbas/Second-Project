@@ -10,7 +10,11 @@ import ProfileScreen from "../screens/Users/ProfileScreen.jsx";
 import ForgotPassword from "../screens/Users/ForgotPassword.jsx";
 import VerifyOtp from "../screens/Users/VerifyOtp.jsx";
 import ResetPassword from "../screens/Users/ResetPassword.jsx";
-import PackageDetails from "../screens/Admin/PackageDetails.jsx"
+import PackageDetails from "../screens/Admin/PackageDetails.jsx";
+import PackagesAndDestination from "../screens/Users/PackagesAndDestination.jsx";
+import PackageDetailsUser from '../screens/Users/PackageDetails.jsx';
+import Places from "../screens/Users/Places.jsx";
+
 
 //hotel import
 import HotelLogin from "../screens/Hotel/HotelLogin.jsx";
@@ -40,6 +44,7 @@ import NotFound from "../screens/NotFound.jsx";
 import NewPage from "../screens/Admin/newpage.jsx";
 
 
+
 const Routers = () => {
   return (
     <Routes>
@@ -52,6 +57,11 @@ const Routers = () => {
       <Route path='/otpLoginEmail' element={<OtpLoginEmail/>}/>
          <Route path='/otpLogin' element={<OtpLogin/>}/>
       <Route path="" element={<PrivateRoute />}>
+      <Route path="/packages&destination" element={<PackagesAndDestination/>} />
+      <Route path="/places" element={<Places/>} />
+
+      <Route path="/PackageDetails" element={<PackageDetailsUser/>} />
+      
         <Route path="/profile" element={<ProfileScreen />} />
       </Route>
 

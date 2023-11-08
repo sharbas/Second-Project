@@ -4,46 +4,52 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../slices/HotelSlices/hotelAuthSlice.js";
 import { useNavigate } from "react-router-dom";
 import hotelAxiosInstance from "../../utils/hotelAxiosInstance";
-import './HotelHeader.css'
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 
 function HotelHeader() {
   const dispatch = useDispatch();
   const { hotelInfo } = useSelector((state) => state.hotelauth); // Replace with your actual auth slice state
-  const navigate=useNavigate()
-  const handleLogout =async () => {
-    try{
-      
-      const res=await hotelAxiosInstance.post('/logout')
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      const res = await hotelAxiosInstance.post('/logout');
       dispatch(logout());
-      console.log('hai this hotellogout');
-        navigate('/hotel/login')
-    }catch(error){
+      navigate('/hotel/login');
+    } catch (error) {
       toast.error(error?.data?.message || error.error);
     }
-    }
+  }
 
   return (
-    <header className="hotel-header">
+<header className="bg-black p-2 text-white flex items-center justify-between fixed h-20 w-full z-10">
       <div className="logo">
         <img src="" alt="" />
       </div>
-      <div className="search-bar">
-        <input type="text" placeholder="Search..." />
-        <button type="button">
+      {/* <div className="search-bar flex items-center ml-auto">
+        <input
+          type="text"
+          placeholder="Search..."
+          className="p-2 rounded-full border border-blue-400"
+        />
+        <button type="button" className="bg-white text-black p-2 rounded-full">
           <FaSearch size={20} />
         </button>
-      </div>
+      </div> */}
       <div className="profile-container">
-          <div
-            className="profile-image"
-            style={{
-              backgroundImage: "url('https://imgv3.fotor.com/images/blog-cover-image/10-profile-picture-ideas-to-make-you-stand-out.jpg')",
-            }}
-          ></div>
-     
+        <div
+          className="profile-image"
+          style={{
+            backgroundImage: "url('https://imgv3.fotor.com/images/blog-cover-image/10-profile-picture-ideas-to-make-you-stand-out.jpg')",
+          }}
+        ></div>
         {hotelInfo && (
-          <button onClick={handleLogout}  className="logout-button" >Logout</button>
+          <button
+            onClick={handleLogout}
+            className="bg-blue-500 text-white p-2 rounded-full font-bold transition duration-300 hover:bg-blue-700"
+          >
+            Logout
+          </button>
         )}
       </div>
     </header>

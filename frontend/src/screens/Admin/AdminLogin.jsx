@@ -29,7 +29,6 @@ const AdminLogin = () => {
       
    
         const res = await axios.post('http://localhost:5000/api/admin/auth', { email, password });
-        console.log('res',res.data)
         dispatch(setCredentials({ ...res.data }));
         navigate("/admin/home");
         toast.success(res.data.message);

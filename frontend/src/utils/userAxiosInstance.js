@@ -5,19 +5,22 @@ const userAxiosInstance = axios.create({
     baseURL: 'http://localhost:5000/api/users', // Replace with your API URL
     headers: {
       'Content-Type': 'application/json',
-      withCredentials: true, // If needed for cross-origin requests
+      
     },
   });
-  
   // Apply the authcheck middleware to the Axios instance
   userAxiosInstance.interceptors.request.use(
     async (config) => {
       const userInfo = localStorage.getItem('userInfo');
-      const token=userInfo.userToken
+
+
+      const parsedUserInfo=JSON.parse(userInfo)
+
+      const token=parsedUserInfo.userToken
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
       }
-  
+
       return config;
     },
     (error) => {

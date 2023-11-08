@@ -15,7 +15,6 @@ function HotelVerifyOtp(){
         e.preventDefault()
         try{
             const res=await hotelAxiosInstance.post('/verifyOtp',{state,otp})
-            console.log('this is verifyOtpHandler');
             navigate('/hotel/resetPassword',{state:state})
 
         }catch(error){

@@ -32,11 +32,8 @@ const HotelLogin = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      console.log('hai hotel');
       const res = await axios.post('http://localhost:5000/api/hotel/auth',{email, password})
-      console.log(res,'hai hotel after axios');
       dispatch(setCredentials({ ...res.data }));
-      console.log('');
       navigate("/hotel/home");
     } catch (error) {
       toast.error(error?.data?.message || error.message);
@@ -64,7 +61,7 @@ const HotelLogin = () => {
           <input type="password" name="password" placeholder='Enter password' className='form-control' value={password} onChange={(e) => setPassword(e.target.value)}  autoComplete="current-password"/>
         </div>
         <div className='d-grid'>
-          <button type="submit" className='btn btn-primary mb-3' >
+          <button type="submit" className='btn bg-primary text-white mb-3' >
             Sign In
           </button>
         </div>

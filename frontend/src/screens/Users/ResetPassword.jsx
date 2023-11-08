@@ -20,7 +20,6 @@ try{
     if(passwordPattern.test(password)){
         if(password===confirmPassword){
 let res=await ResetPassword({state,password}).unwrap()
-console.log(res);
 toast('Password successfully changed')
 navigate('/login')
         }else{

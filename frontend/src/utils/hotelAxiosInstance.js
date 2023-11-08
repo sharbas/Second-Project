@@ -16,11 +16,9 @@ const hotelAxiosInstance = axios.create({
       const parsedHotelInfo = JSON.parse(hotelInfo); // Parse the JSON string
       const token=parsedHotelInfo.hotelToken
       // Authorization = `Bearer ${token}`
-      console.log('hotelToken',token)
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
       }
-  console.log('end of an era');
       return config;
     },
     (error) => {

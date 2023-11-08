@@ -44,7 +44,6 @@ const HotelSignUp = () => {
       try {
         const res = await register({ name, email, password }).unwrap();
         dispatch(setCredentials({ ...res }));
-        console.log("Naa ready thaan");
         navigate("/hotel/login");
       } catch (error) {
         toast.error("error 1" || err?.data?.message || err.error);
@@ -78,7 +77,7 @@ const HotelSignUp = () => {
                     Remember me
                   </label>
                 </div>            <div className='d-grid mt-2'>
-                  <button type="submit" className='btn btn-primary mb-3'>Sign Up</button>
+                  <button type="submit" className='btn bg-primary text-white mb-3'>Sign Up</button>
                 </div>
                 <p className='text-end mt-2'>
               <Link to='/hotel/login' className='ms-2' style={{textDecoration:'none'}}>Sign In</Link>

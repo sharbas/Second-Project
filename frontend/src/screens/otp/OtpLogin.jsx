@@ -22,7 +22,7 @@ function OtpLogin() {
     const verifyOTPHandler = async (e) => {
       e.preventDefault();
       try {
-        console.log('userType',userType)
+     
         if(userType=="user"){
         const res = await userAxiosInstance.post(`/otpLogin`,{ state, otp })
         dispatch(userSetCredentials({...res.data}))
@@ -37,7 +37,7 @@ function OtpLogin() {
             navigate("/hotel/home")
         }
       } catch (error) {
-        console.log(error)
+      
         toast.error(error?.response?.data||error.error);
       }
     };

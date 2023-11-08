@@ -56,7 +56,7 @@ if(admin){
     <>
     <HotelSidebar toggleSidebar={toggleSidebar}/>
 
-    <div className={hotelInfo?`content-container ${isSidebarOpen?'':'no-left-padding'}`:''}>
+    <div className={hotelInfo?`content-container ${isSidebarOpen?'':'no-left-padding'}`:''} style={{paddingTop:'5rem',width:'100%'}}>
 <Routers/>
     </div>
     </>

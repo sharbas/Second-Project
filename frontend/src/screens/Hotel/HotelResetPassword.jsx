@@ -18,8 +18,7 @@ try{
   if(passwordPattern.test(password)){
     if(password===confirmPassword){
       let res=await hotelAxiosInstance.post('/resetPassword',{state,password})
-      console.log('hai this is resetPassword p');
-console.log(res);
+   
 toast('Password successfully changed')
 navigate('/hotel/login')
         }else{
