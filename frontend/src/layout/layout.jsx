@@ -6,7 +6,7 @@ import AdminSidebar from "../components/Sidebar/AdminSidebar.jsx";
 import HotelSidebar from "../components/Sidebar/HotelSidebar.jsx";
 import { useEffect, useState } from "react";
 import {  useSelector } from "react-redux"
-import UserFooter from "../components/footer/userFooter.jsx";
+import UserFooter from "../components/footer/UserFooter.jsx";
 import "./layout.css"
 
 
