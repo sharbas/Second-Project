@@ -17,8 +17,8 @@ import Places from "../screens/Users/Places.jsx";
 import Wishlist from "../screens/Users/Wishlist.jsx"
 import PaymentAndDetails from "../screens/Users/PaymentAndDetails.jsx"
 import CartDetails from "../components/cardDetails.jsx";
-import Cancel from "../components/cancel.jsx";
-import Success from "../components/success.jsx";
+import Cancel from "../components/Cancel.jsx";
+import Success from "../components/Success.jsx";
 import UserChat from "../screens/Users/UserChat.jsx";
 import Contact from "../screens/Users/Contact.jsx";
 import MyBookedDetails from "../screens/Users/MyBookedDetails.jsx";
