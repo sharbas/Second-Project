@@ -109,8 +109,8 @@ console.log(formDataToSend,'thisi is formdatatosend');
   };
 
   return (
-    <div className="p-35">
-      <h2 className="text-2xl font-semibold mb-4 flex items-center justify-center">Travel Packages</h2>
+    <div className="pl-40 pt-10">
+      <h2 className="text-2xl font-semibold mb-4 flex items-center justify-center pr-20">Travel Packages</h2>
       <div className="overflow-x-auto p-20">
         <table className="min-w-full bg-white shadow rounded-lg ">
           <thead>

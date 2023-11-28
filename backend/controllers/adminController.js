@@ -4,7 +4,8 @@ import generateToken from "../utils/adminGenerateToken.js"
 import User from "../models/userModel.js"
 import Hotel from "../models/hotelModel.js"
 import Packages from "../models/packageModel.js"
-
+import BookedTravelers from '../models/bookedTravelers.js'
+import HotelDetails from '../models/hotelDetailsModel.js'
 
 const authadmin=asyncHandler(async(req,res)=>{
         const {email,password}=req.body
@@ -83,5 +84,138 @@ const adminLoadPackages=async(req,res)=>{
 }
 
 
+const adminLoadBookedTravelers = async (req, res) => {
+  try {
+    console.log('this is adminadminLoadBookedTravelers');
+    const bookedTravelers = await BookedTravelers.find({})
+      .populate({
+        path: 'packageId',
+        model: Packages,
+        select: 'duration place category'
+      })
+      .populate({
+        path: 'hotelId',
+        model: HotelDetails,
+        select: 'hotelName roomPrice contactNumber'
+      });
 
-export {authadmin,logoutAdmin,adminLoadUsers,adminLoadHotelUsers,blockUnblockUser,blockUnblockHotelUser,adminLoadPackages}
+    // Filter out documents without the hotelId field
+    const filteredBookedTravelers = bookedTravelers.filter((traveler) => traveler.hotelId);
+
+    const combinedData = filteredBookedTravelers.map((traveler) => ({
+      packageId: {
+        duration: traveler.packageId.duration,
+        place: traveler.packageId.place,
+        category: traveler.packageId.category,
+      },
+      hotelId: {
+        hotelName: traveler.hotelId.hotelName,
+        roomPrice: traveler.hotelId.roomPrice,
+        contactNumber: traveler.hotelId.contactNumber,
+      },
+      address: traveler.address,
+      country: traveler.country,
+      email: traveler.email,
+      flightDateAndTime: traveler.flightDateAndTime,
+      travelers: traveler.travelers.map((individualTraveler) => ({
+        travelerName: individualTraveler.travelerName,
+        passportNumber: individualTraveler.passportNumber,
+        dob: individualTraveler.dob,
+        phone: individualTraveler.phone,
+        gender: individualTraveler.gender,
+      })),
+      packagePrice: traveler.packagePrice,
+      hotelPrice: traveler.hotelPrice,
+      totalMembers: traveler.totalMembers,
+      totalAmountOfPackage: traveler.totalAmountOfPackage,
+      totalAmount: traveler.totalAmount,
+    }));
+
+    console.log('this is combined bookedTravel details', combinedData);
+
+    res.status(200).json(combinedData);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+};
+
+  
+const dashboardData = async (req, res) => {
+  try {
+    const pieChartData = await BookedTravelers.aggregate([
+      {
+        $match: {
+          totalAmount: { $exists: true, $ne: null },
+          "travelers.gender": { $in: ["male", "female", "other"] },
+        },
+      },
+      {
+        $unwind: "$travelers",
+      },
+      {
+        $group: {
+          _id: "$travelers.gender",
+          count: { $sum: 1 },
+        },
+      },
+    ]);
+    
+    // The result will be an array with three elements: one for each gender
+    console.log(pieChartData,'pieChartDataaaaaaaaa')
+    
+
+  // Aggregate pipeline for bar graph data (e.g., total number of travelers for each country)
+const barGraphData = await BookedTravelers.aggregate([
+  {
+    $match: {
+      totalAmount: { $exists: true, $ne: null },
+    },
+  },
+  {
+    $group: {
+      _id: "$country",
+      totalTravelers: { $sum: { $size: "$travelers" } }, // Calculate total number of travelers
+    },
+  },
+]);
+
+
+    // Aggregate pipeline for statistics div data
+    const statisticsData = await BookedTravelers.aggregate([
+      {
+        $match: {
+          totalAmount: { $exists: true, $ne: null },
+        },
+      },
+      {
+        $group: {
+          _id: null,
+          totalAmount: { $sum: "$totalAmount" },
+          averagePackagePrice: { $avg: "$totalAmountOfPackage" },
+          totalMembers: { $sum: "$totalMembers" },
+        },
+      },
+    ]);
+
+    // Assuming you have a response structure you want to send
+    const responseData = {
+      pieChart: pieChartData,
+      barGraph: barGraphData,
+      statistics: statisticsData[0], // Use [0] because it's a single group result
+    };
+console.log(responseData,'responseDataaaaaaaaaaaaaaaaaaaaaaaaa');
+    res.status(200).json({ success: true, data: responseData });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, error: "Internal Server Error" });
+  }
+};
+
+
+
+export {authadmin,
+  logoutAdmin,adminLoadUsers,
+  adminLoadHotelUsers,blockUnblockUser,
+  blockUnblockHotelUser,adminLoadPackages,
+  adminLoadBookedTravelers,dashboardData}

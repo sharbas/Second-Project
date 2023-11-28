@@ -2,11 +2,12 @@
   font-family: 'Courier New', monospace;}
 
   .navbar {
+    border:  1px  outset rgba(21, 21, 21, 0.151); 
     display: flex;
     align-items: center;
     justify-content: space-between;
-    color: rgb(255, 255, 255);
-    background-color: #fffefe ; /* Add your desired background color */
+    color:  rgb(255, 0, 0);
+    background-color: #000000bf; /* Add your desired background color */
     padding: 10px 40px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
     z-index: 10;
@@ -19,11 +20,12 @@
     margin-top: -12px
   }
 .navbar-home {
+  border: 1px  outset rgba(21, 21, 21, 0.151); 
   display: flex;
   color: rgb(255, 0, 0);
   align-items: center;
   justify-content: space-between;
-  background-color:#fbfbfb;
+  background-color:#000000bf;
   padding: 10px 40px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
   z-index: 10;
@@ -49,8 +51,9 @@
 #navbar li a {
   text-decoration: none;
   font-size: 1.3rem;
+  font-family: 'sans-serif';
   font-weight: 600;
-  color: #000000;
+  color:#ffffff;
   transition: 0.3s ease-in-out;
 }
 
@@ -71,11 +74,11 @@
 }
 
 #navbar li a:hover {
-  color: #cecece;
+  color: #000000;
 }
 
 #navbar li a.active-link {
-  color: #feffff;
+  color: #303030;
   /* Add any other styles for the active link */
 
   /* Underline effect */
@@ -86,7 +89,7 @@
   content: "";
   width: 100%; /* Set the width to 100% to span the entire link text */
   height: 5px;
-  background: #4d2c5e;
+  background: #ffffff;
   position: absolute;
   bottom: -10px;
   left: 0; 
@@ -98,7 +101,7 @@
 }
 
 #mobile i {
-  color: #fff;
+  color: #000000;
   align-items: center;
 }
 
@@ -113,10 +116,12 @@
     right: -300px;
     width: 250px;
     height: 100vh;
-    background: #eeeeee7c;
+    color: #000000;
+    background: #ffffff;
     box-shadow: 0 40px 60px rgba(0, 0, 0, 0.1);
     padding: 40px 0 0 10px;
     border-radius: 1%;
+  
   }
 
   #navbar.active {
@@ -135,6 +140,11 @@
   /* Increase gap between listed links */
   #navbar li {
     padding: 10px 20px; /* You can adjust the padding as needed */
+    color:#000000
+  }
+  #navbar li a {
+    color:#000000
+
   }
 }
 /* last_update 2 */

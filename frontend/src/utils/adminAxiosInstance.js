@@ -14,8 +14,8 @@ const adminAxiosInstance = axios.create({
   adminAxiosInstance.interceptors.request.use(
     async (config) => {
       const adminInfo = localStorage.getItem('adminInfo');
-      const token=adminInfo.adminToken
-      
+      const parsedAdminInfo=JSON.parse(adminInfo)
+      const token=parsedAdminInfo.adminToken
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
       }

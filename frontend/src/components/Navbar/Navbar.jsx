@@ -23,8 +23,9 @@ const navigate=useNavigate()
   const isHomeRoute = location.pathname === '/'
   const navLinks = [
     { id: 1, text: 'Home', path: '/' },
-    { id: 2, text: 'packages & destination', path: '/packages&destination' },
-    { id: 3, text: 'contact', path: '/contact' },
+    { id: 2, text: 'Packages & Destination', path: '/packages&destination' },
+    { id: 3, text: 'Contact', path: '/contact' },
+    { id: 4, text: 'Chats', path: '/chats/allchats' },
     
 
   ];
@@ -107,7 +108,7 @@ toast.error(error?.error)
               <li>
 <Link to="/profile" className="profile-icon">
   <img
-    src="/public/profilelogo.png"
+    src="/profilelogo.png"
     alt="User Profile"
     style={{
       width: '30px', // Adjust the width as needed

@@ -61,7 +61,7 @@ const [rows,setRows]=useState([])
   return (
     
     <>
-    <div className="data-grid-container"  style={{backgroundColor:'rgb(11 142 140)'}}>
+    <div className="data-grid-container pl-60">
       <DataGrid
         rows={rows}
         columns={columns}
@@ -75,15 +75,6 @@ const [rows,setRows]=useState([])
         checkboxSelection
       />
     </div>
-
-    {/* {rows.map((row) => (
-  // <DetailsModal
-  //   key={row._id}
-  //   isOpen={openModals[row._id] || false}
-  //   onClose={() => closeDetailsModal(row._id)}
-  //   details={row.details}  // Pass the user-specific details
-  // />
-))} */}
   </>
   )
 }

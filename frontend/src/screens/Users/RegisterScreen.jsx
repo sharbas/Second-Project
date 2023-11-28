@@ -4,9 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
 import { setCredentials } from "../../slices/authSlice.js";
 import './RegisterScreen.css'
+import {useGoogleAuthMutation} from '../../slices/usersApiSlice.js'
 import userAxiosInstance from "../../utils/userAxiosInstance.js";
 import axios from "axios";
-// import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
+import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 // import image from '../../public/pexels-cottonbro-studio-4067753.jpg'
 
 const RegisterScreen = () => {
@@ -22,7 +23,7 @@ const RegisterScreen = () => {
   const { userInfo } = useSelector((state) => state.auth);
 
   // , { isLoading }
-  // const [googleAuth, { authLoading }] = useGoogleAuthMutation();
+  const [googleAuth, { authLoading }] = useGoogleAuthMutation();
 
   // useEffect(() => {
   //   if (userInfo) {
@@ -30,15 +31,15 @@ const RegisterScreen = () => {
   //   }
   // }, [navigate, userInfo]);
 
-  // const authenticateData = async (credentialResponse) => {
-  //   try {
-  //     let res = await googleAuth({ credentialResponse }).unwrap();
-  //     dispatch(setCredentials({ ...res }));
-  //     navigate("/");
-  //   } catch (error) {
-  //     toast.error("User Alredy Exists");
-  //   }
-  // };
+  const authenticateData = async (credentialResponse) => {
+    try {
+      let res = await googleAuth({ credentialResponse }).unwrap();
+      dispatch(setCredentials({ ...res }));
+      navigate("/");
+    } catch (error) {
+      toast.error("User Alredy Exists");
+    }
+  };
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -57,6 +58,8 @@ const RegisterScreen = () => {
 
   return (
 <>
+<GoogleOAuthProvider clientId='704159527663-q1i414p15g1604vgsqchpjh8ftlco786.apps.googleusercontent.com'>
+
 <div>
       <div className='signup template d-flex justify-content-center align-items-center vh-100 ' style={{ backgroundColor: '#EFD3B5' }}>
         <div className='form_container p-5 rounded bg-white'>
@@ -86,6 +89,15 @@ const RegisterScreen = () => {
             <p className='text-end mt-2'>
               <Link to='/login' className='ms-2' style={{textDecoration:'none'}}>Sign In</Link>
             </p>
+            <GoogleLogin
+              onSuccess={credentialResponse => {
+                authenticateData(credentialResponse);
+              }}
+              onError={() => {
+                console.log('Login Failed');
+              }}
+              text='Sign Up with Google'
+            />
           </form>
         </div>
       </div>
@@ -100,6 +112,7 @@ const RegisterScreen = () => {
         pauseOnHover
       />
     </div>
+    </GoogleOAuthProvider>
 </>
    
     

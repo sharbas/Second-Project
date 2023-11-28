@@ -18,12 +18,12 @@ function UserFooter() {
       </div>
       <div className="space-y-4">
         <h2 className="text-lg"></h2>
-        <div className="flex space-x-4">
-          <img src="/userhomescreen.png.jpg" alt="Advertisement 1" className="h-24 rounded-md" />
+        {/* <div className="flex space-x-4"> */}
+          {/* <img src="/userhomescreen.png.jpg" alt="Advertisement 1" className="h-24 rounded-md" />
           <img src="/ad2.jpg" alt="Advertisement 2" className="h-24 rounded-md" />
           <img src="/ad5.jpg" alt="Advertisement 2" className="h-24 rounded-md" />
-          <img src="/ad4.jpg" alt="Advertisement 2" className="h-24 rounded-md" />
-        </div>
+          <img src="/ad4.jpg" alt="Advertisement 2" className="h-24 rounded-md" /> */}
+        {/* </div> */}
       </div>
       <div className="space-x-4">
         <a href="#" className="text-white text-2xl"><i className="fab fa-facebook hover:text-gray-400"></i></a>

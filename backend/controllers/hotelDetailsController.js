@@ -1,6 +1,7 @@
 import HotelDetails from "../models/hotelDetailsModel.js"
 import asyncHandler from  "express-async-handler"
 import Hotel from '../models/hotelModel.js'
+import Packages from '../models/packageModel.js'
 const addHotelDetails = asyncHandler(async (req, res) => {
     try {
   
@@ -39,6 +40,19 @@ const addHotelDetails = asyncHandler(async (req, res) => {
   });
   
 
+  const fetchLocation=async(req,res)=>{
+    try{
+      const location=await Packages.find({},{_id:0,place:1})
+      console.log(location,'this is location');
+res.status(200).json({location})
+
+    }catch(error){
+      res.status(500).json({ message: 'An error occurred while adding hotel details' });
+
+    }
+
+  }
+
 const loadHotel=asyncHandler(async(req,res)=>{
    const hotel=await HotelDetails.find({
     hotelUserId:req.user._id})
@@ -65,6 +79,11 @@ const updateDetails = asyncHandler(async (req, res) => {
         services,
        
       } = req.body;
+
+        
+        
+        
+
       const updatedHotelDetails = await HotelDetails.updateOne(
         { _id: req.body._id },
         {
@@ -91,6 +110,7 @@ const updateDetails = asyncHandler(async (req, res) => {
 
 export {
     addHotelDetails,
+    fetchLocation,
     loadHotel,
     updateDetails 
 }

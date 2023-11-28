@@ -71,6 +71,7 @@ navigate('/hotel/login')
             </Link>
           </li>
           <li>
+          <Link to='/hotel/chats'>
           <div className="d-flex" >
             <FaPaperPlane
               className={`sidebar-icon ${isIconsOnly ? "hidden" : ""}`}
@@ -79,6 +80,7 @@ navigate('/hotel/login')
               Message
             </span>
             </div>
+            </Link>
           </li>
 
           <li className="logout-button" onClick={handleLogout}>

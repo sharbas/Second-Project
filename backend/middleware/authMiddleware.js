@@ -4,8 +4,8 @@ import User from '../models/userModel.js'
 
 
 const protect=asyncHandler(async(req,res,next)=>{
-    let token;
-    token=req.cookies.jwt
+
+     let token=req.cookies.jwt
 
     if(token){
 try{

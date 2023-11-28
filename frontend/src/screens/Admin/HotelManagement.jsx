@@ -58,7 +58,7 @@ const [rows,setRows]=useState([])
   return (
     
     <>
-    <div className="data-grid-container pl-48" style={{backgroundColor:'rgb(11 142 140)'}}>
+    <div className="data-grid-container pl-48 " style={{backgroundColor:'userBgColor' }}>
       <DataGrid
       className='ml-12'
         rows={rows}

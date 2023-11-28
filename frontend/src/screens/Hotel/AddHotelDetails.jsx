@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
+import hotelAxiosInstance from '../../utils/hotelAxiosInstance';
 
 const AddHotelDetails = () => {
   const [formData, setFormData] = useState({
@@ -15,6 +16,22 @@ const AddHotelDetails = () => {
     services: '',
     images: [],
   });
+
+  const [location,setLocation]=useState([])
+
+  useEffect(()=>{
+  const  fetchLocation=async()=>{
+      const locationRes=await hotelAxiosInstance.get('/fetchLocation')
+      
+      setLocation( locationRes.data.location)
+
+    }
+fetchLocation()
+  },[])
+
+useEffect(()=>{
+  console.log(location,'this is useffect location')
+},[location])
 
   const hotelUserID = useSelector((state) => state.hotelauth._id);
 
@@ -132,21 +149,24 @@ const AddHotelDetails = () => {
       </label>
     </div>
     <div className="relative z-0 mb-6 group">
-      <select
-        name="packageLocation"
-        value={formData.packageLocation}
-        onChange={handleChange}
-        className="block w-full px-4 py-2 border rounded border-black"
-      >
-        <option value="location1">Location 1</option>
-        <option value="location2">Location 2</option>
-        <option value="location3">Location 3</option>
-        <option value="other">Other</option>
-      </select>
-      <label htmlFor="packageLocation" className="block text-gray-600">
-        Package Location
-      </label>
-    </div>
+  <select
+    name="packageLocation"
+    value={formData.packageLocation}
+    onChange={handleChange}
+    className="block w-full px-4 py-2 border rounded border-black"
+  >
+    {location.map((loc, index) => (
+      <option key={index} value={loc.place}>
+        {loc.place}
+      </option>
+    ))}
+    <option value="other">Other</option>
+  </select>
+  <label htmlFor="packageLocation" className="block text-gray-600">
+    Package Location
+  </label>
+</div>
+
     <div className="relative z-0 mb-6 group">
       <input
         type="text"

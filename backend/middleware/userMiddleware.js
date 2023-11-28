@@ -4,7 +4,7 @@ import User from "../models/userModel.js";
 const userAuthCheck = async (req, res, next) => {
   // Retrieve the userToken from the "Authorization" header
   const userToken = req.headers.authorization;
-
+console.log('usertoken');
 
   if (userToken) {
     try {

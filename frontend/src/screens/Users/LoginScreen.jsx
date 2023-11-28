@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setCredentials } from "../../slices/authSlice.js";
-import { toast,ToastContainer } from "react-toastify";
-import {useLoginMutation} from "../../slices/usersApiSlice.js";
+import { toast } from "react-toastify";
+import {useLoginMutation,useGoogelLoginMutation} from "../../slices/usersApiSlice.js";
 import './LoginScreen.css'
-
-// import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
+// import {GoogleLogin} from 'react-google-login'
+import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
@@ -15,7 +15,8 @@ const LoginScreen = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const [login] = useLoginMutation();
+  const [login] = useLoginMutation()
+  const [googleLogin,{loginLoading}]=useGoogelLoginMutation()
 
   const { userInfo } = useSelector((state) => state.auth);
 
@@ -25,13 +26,32 @@ const LoginScreen = () => {
     }
   }, [navigate, userInfo]);
 
-  // const authenticateData = async (credentialRespose) => {
-  //   try {
-  //     let res = await googleLogin({ credentialRespose }).unwrap();
-  //     dispatch(setCredentials({ ...res }));
-  //     navigate("/");
-  //   } catch (error) {}
-  // };
+  const authenticateData = async (credentialResponse) => {
+    try {
+      console.log('Attempting to authenticate data with Google');
+      
+      // Log the received credentialResponse
+      console.log('Received credentialResponse:', credentialResponse);
+
+      // Call the googleLogin mutation
+      let res = await googleLogin({ credentialResponse }).unwrap();
+
+      // Log the response from the server
+      console.log('Authentication successful. Response from server:', res);
+
+      // Dispatch the action to set credentials
+      dispatch(setCredentials({ ...res }));
+
+      // Navigate to the desired location
+      navigate("/");
+    } catch (error) {
+      // Log any errors during the authentication process
+      console.error('Error during authentication:', error);
+
+      // Display a toast message for the user
+      toast.error("This user is either invalid or blocked by admin.");
+    }
+  };
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -47,6 +67,7 @@ const LoginScreen = () => {
 
   return (
 
+    <GoogleOAuthProvider clientId='704159527663-8d2ikv5bla9pcqd8mdst9og6c2162n2c.apps.googleusercontent.com'>
 
     <div className='login template d-flex justify-content-center align-items-center vh-100' style={{ backgroundColor: '#EFD3B5' }}>
     <div className='form_container p-5 rounded bg-white'>
@@ -71,11 +92,19 @@ const LoginScreen = () => {
             Forgot <a href='/forgotPassword' style={{textDecoration:'none'}}>Password?</a>
           </p>
         </div>
+        <GoogleLogin
+              onSuccess={credentialResponse => {
+                authenticateData(credentialResponse);
+              }}
+              onError={() => {
+                console.log('Login Failed');
+              }}
+            />
       </form>
     </div>
   </div>
   
-
+  </GoogleOAuthProvider>
 
   
   );

@@ -1,8 +1,9 @@
 import asyncHandler from  "express-async-handler"
 import Hotel from '../models/hotelModel.js'
-
+import HotelDetails from "../models/hotelDetailsModel.js"
 import hotelGenerateToken from "../utils/hotelGenerateToken.js"
 import sendResetMail from "../utils/nodeMailer.js"
+import BookedTravelers from "../models/bookedTravelers.js"
 
 
 
@@ -150,6 +151,117 @@ import sendResetMail from "../utils/nodeMailer.js"
   })
 
 
+  const dashboardData = async (req, res) => {
+    try {
+
+
+      const userId = req.user._id;
+      // Task 0: Find hotelId based on userId in HotelDetails
+      const hotelDetails = await HotelDetails.findOne({ hotelUserId: userId });
+      const hotelId = hotelDetails ? hotelDetails._id : null;
+  
+      if (!hotelId) {
+        return res.status(404).json({ error: 'Hotel not found for the given user.' });
+      }
+  
+      // Task 1: Total Revenue, Average Booking Amount, Number of Bookings, Total Members
+      const hotelAggregation = await BookedTravelers.aggregate([
+        {
+          $match: {
+            'hotelId': hotelId,
+          },
+        },
+        {
+          $group: {
+            _id: null,
+            totalRevenue: { $sum: '$hotelPrice' },
+            averageBookingAmount: { $avg: '$hotelPrice' },
+            numberOfBookings: { $sum: 1 },
+            totalMembers: { $sum: '$totalMembers' },
+          },
+        },
+      ]);
+  
+  
+      // Extract results from the aggregation
+      const hotelStats = hotelAggregation[0];
+  console.log('hotelStats',hotelStats);
+      // Task 2: Booking Trends Over Time
+      const bookingTrends = await BookedTravelers.aggregate([
+        {
+          $match: {
+            'hotelId': hotelId,
+          },
+        },
+        {
+          $group: {
+            _id: {
+              year: { $year: '$flightDateAndTime' },
+              month: { $month: '$flightDateAndTime' },
+              day: { $dayOfMonth: '$flightDateAndTime' },
+            },
+            count: { $sum: 1 },
+          },
+        },
+        {
+          $sort: {
+            '_id.year': 1,
+            '_id.month': 1,
+            '_id.day': 1,
+          },
+        },
+      ]);
+  
+      console.log('this is bookingTrendsAggregation',bookingTrends[0]);
+   
+   // Aggregation pipeline to get roomType count
+const roomTypeAggregation = await HotelDetails.aggregate([
+  {
+    $match: {
+      'hotelUserId': userId,
+    },
+  },
+  {
+    $group: {
+      _id: '$roomType',
+      count: { $sum: 1 },
+    },
+  },
+  {
+    $project: {
+      _id: 0,
+      roomType: '$_id',
+      count: 1,
+    },
+  },
+]);
+    
+        // Extract room types and counts from the aggregation
+        const roomTypesWithCount = roomTypeAggregation.map(entry => ({
+          roomType: entry.roomType,
+          count: entry.count,
+        }));
+    
+        console.log('Room Types with Count:', roomTypesWithCount);
+
+
+
+      // Now you have the required data for each task
+      const result = {
+        hotelStats,
+        bookingTrends,
+        roomTypesWithCount,
+      };
+  console.log('result',result);
+      res.json({hotelStats,bookingTrends,roomTypesWithCount});
+    } catch (error) {
+      console.error('Error fetching dashboard data:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  };
+  
+
+
 export {
     authHotel,
     register,
@@ -158,5 +270,6 @@ export {
     confirmOtp,
     resetPassword,
     getHotelUserProfile,
-    updateHotelUserProfile
+    updateHotelUserProfile,
+    dashboardData
 }

@@ -1,9 +1,9 @@
 /* UserManagement.css */
 
 .data-grid-container {
-    height: 600px;
+    height:94vh;
     width: 100%;
-    padding-top: 70px;
+    padding-top: 4rem;
     padding-left: 30px;
     padding-right: 100px;
     margin: auto;

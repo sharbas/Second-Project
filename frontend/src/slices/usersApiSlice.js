@@ -52,6 +52,20 @@ export const usersApiSlice = apiSlice.injectEndpoints({
         method: "POST",
       }),
     }),
+    googleAuth:builders.mutation({
+      query:(data)=>({
+        url:`${USERS_URL}/oauth`,
+        method:'POST',
+        body:data
+      })
+    }),
+    googelLogin:builders.mutation({
+      query:(data)=>({
+        url:`${USERS_URL}/g-login`,
+        method:'POST',
+        body:data
+      })
+    }),
   }),
 });
 
@@ -62,5 +76,7 @@ export const {
   useUpdateUserMutation,
   useForgotPasswordMutation,
   useVerifyOtpMutation,
-  useResetPasswordMutation
+  useResetPasswordMutation,
+  useGoogleAuthMutation,
+  useGoogelLoginMutation
 } = usersApiSlice;

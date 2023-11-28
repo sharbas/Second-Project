@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import {BsFillArrowRightSquareFill} from "react-icons/bs";
 import "./AdminSidebar.css";
 import { useDispatch,useSelector } from "react-redux";
 import AdminHeader from "../Header/AdminHeader.jsx";
-import { Link,useNavigate } from "react-router-dom"; // Import the Link component
+import {NavLink,useNavigate } from "react-router-dom"; // Import the Link component
 import  adminAxiosInstance  from "../../utils/adminAxiosInstance";
+import { logout } from "../../slices/AdminSlices/adminAuthSlice";
 import {
   FaHome,
   FaUser,
@@ -16,7 +16,6 @@ import {
   FaChartBar,
   FaSignOutAlt,
 } from "react-icons/fa";
-import { logout } from "../../slices/AdminSlices/adminAuthSlice";
 
 function AdminSidebar({toggleSidebar}) {
   const [isIconsOnly, setIsIconsOnly] = useState(false);
@@ -48,34 +47,34 @@ function AdminSidebar({toggleSidebar}) {
       <AdminHeader />
     { adminInfo &&  <aside className={` admin-sidebar ${isIconsOnly ? "icons-only" : ""}`}>
   
-        <div className="" onClick={toggleIconsOnly}>
-          {isIconsOnly ? <BsFillArrowRightSquareFill className="w-4 h-4 "/> : "✖"}
+        <div className="toggle-button" onClick={toggleIconsOnly}>
+          {isIconsOnly ? "☰"  : "✖"}
 
         </div>
         
         <ul>
           <li>
-            <Link to="/admin/home"> {/* Add Link to Dashboard */}
-            <div className="d-flex" >
+          <NavLink to='/admin/home' className="active-link" style={{ textDecoration: 'none', color: 'white' }}> 
+            <div className="d-flex border-white" >
               <FaHome className="sidebar-icon" />
               <span className={`menu-text ${isIconsOnly ? "hidden" : ""}`}>
                 Dashboard
               </span>
               </div>
-            </Link>
+              </NavLink> 
           </li>
-          <li>
-            <Link to="/admin/userManagement"> {/* Add Link to User Management */}
+          <li >
+          <NavLink to='/admin/userManagement' className="active-link" style={{ textDecoration: 'none', color: 'black' }}> {/* Add NavLink to User Management */}
             <div className="d-flex" >
               <FaUser className={`sidebar-icon ${isIconsOnly ? "hidden" : ""}`} />
               <span className={`menu-text ${isIconsOnly ? "hidden" : ""}`}>
                 User Management
               </span>
               </div>
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to="/admin/hotelManagement"> {/* Add Link to Hotel Management */}
+            <NavLink to="/admin/hotelManagement" className="active-link" style={{ textDecoration: 'none', color: 'black' }}> {/* Add NavLink to Hotel Management */}
             <div className="d-flex" >
               <FaHotel
                 className={`sidebar-icon ${isIconsOnly ? "hidden" : ""}`}
@@ -85,10 +84,10 @@ function AdminSidebar({toggleSidebar}) {
                 Hotel Management
               </span>
               </div>
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to="/admin/packageBooked"> {/* Add Link to Package Booked */}
+            <NavLink to="/admin/bookedTravelers" className="active-link" style={{ textDecoration: 'none', color: 'black' }}> {/* Add NavLink to Package Booked */}
             <div className="d-flex" >
               <FaSuitcase
                 className={`sidebar-icon ${isIconsOnly ? "hidden" : ""}`}
@@ -97,10 +96,10 @@ function AdminSidebar({toggleSidebar}) {
                 Package Booked
               </span>
               </div>
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to="/admin/packageAddForm"> {/* Add Link to Add Package */}
+            <NavLink to="/admin/packageAddForm" className="active-link" style={{ textDecoration: 'none', color: 'black' }}> {/* Add NavLink to Add Package */}
             <div className="d-flex" >
               <FaPlus
                 className={`sidebar-icon ${isIconsOnly ? "hidden" : ""}`}
@@ -109,10 +108,10 @@ function AdminSidebar({toggleSidebar}) {
                 Add Package
               </span>
             </div>
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to="/admin/PackageDetails"> {/* Add Link to Edit Package */}
+            <NavLink to="/admin/PackageDetails" className="active-link" style={{ textDecoration: 'none', color: 'black' }}> {/* Add NavLink to Edit Package */}
             <div className="d-flex" >
             <FaList
                  className={`sidebar-icon ${isIconsOnly ? 'hidden' : ''}`}
@@ -121,10 +120,10 @@ function AdminSidebar({toggleSidebar}) {
                  Package details
               </span>
               </div>
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to="/admin/salesReport"> {/* Add Link to Sales Report */}
+            <NavLink to="/admin/salesReport" className="active-link" style={{ textDecoration: 'none', color: 'black' }}> {/* Add NavLink to Sales Report */}
             <div className="d-flex" >
               <FaChartBar
                 className={`sidebar-icon ${isIconsOnly ? "hidden" : ""}`}
@@ -133,10 +132,10 @@ function AdminSidebar({toggleSidebar}) {
                 Sales Report
               </span>
               </div>
-            </Link>
+            </NavLink>
           </li>
           <li className="logout-button" onClick={handleLogout}>
-            <Link to=""> {/* Add Link to Logout */}
+            <NavLink to="" className="active-link" style={{ textDecoration: 'none', color: 'black' }}> {/* Add NavLink to Logout */}
             <div className="d-flex" >
               <FaSignOutAlt
                 className={`sidebar-icon ${isIconsOnly ? "hidden" : ""}`}
@@ -145,7 +144,7 @@ function AdminSidebar({toggleSidebar}) {
                 Logout
               </span>
               </div>
-            </Link>
+            </NavLink>
           </li>
         </ul>
        

@@ -2,17 +2,21 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import  userAxiosInstance  from '../../utils/userAxiosInstance.js'
 import { toast } from 'react-toastify'
+import WishlistModal from './Wishlist.jsx'
+import { GiSelfLove } from "react-icons/gi";
+import { Link } from 'react-router-dom';
+
 
 const ProfileScreen = () => {
   const {userInfo} = useSelector((state)=>state.auth)
 
   const [submittingForm, setSubmittingForm] = useState(false);
 
-  const [name,setName] = useState('');
-  const [email,setEmail] = useState('');
-  const [password,setPassword] = useState('');
-  const [confirmPassword,setConfirmPassword] = useState('');
-  const [oldImage,setOldImage] = useState('');
+  const [name,setName] = useState('')
+  const [email,setEmail] = useState('')
+  const [password,setPassword] = useState('')
+  const [confirmPassword,setConfirmPassword] = useState('')
+  const [oldImage,setOldImage] = useState('')
   const [image,setImage] = useState('')
 
   const submitHandler = async(e)=>{
@@ -38,6 +42,10 @@ const ProfileScreen = () => {
   
       formData.append("password", password);
       formData.append("image", image);
+        // Log FormData entries
+        for (let pair of formData.entries()) {
+          console.log(pair[0] + ": " + pair[1]);
+        }
    
 
       const res = await userAxiosInstance.put('/profile',formData, {
@@ -68,12 +76,88 @@ const ProfileScreen = () => {
   },[submittingForm])
 
 
+  const [showWishlist, setShowWishlist] = useState(false);
+  const [wishlistItems, setWishlistItems] = useState([]);
+
+  const handleToggleWishlist = async () => {
+    setShowWishlist(!showWishlist);
+    try {
+      if (showWishlist) {
+        // If the modal is closing, you might want to reset the wishlist items
+        setWishlistItems([]);
+      } else {
+        // If the modal is opening, fetch wishlist items
+        const response = await userAxiosInstance.get('/wishlist', userInfo);
+        const data = await response.data
+        console.log(data,'this is the data');
+        setWishlistItems(data);
+      }
+    } catch (error) {
+      console.error('Error fetching wishlist:', error);
+    }
+  };
+
+  const onDeleteItem = async (packageId) => {
+    try {
+      // Make an API call to delete the wishlist item with the given itemId
+      console.log('this isondelteitem',packageId,'1212121212')
+      const response = await userAxiosInstance.delete(`/wishlist?packageId=${packageId}`, userInfo);
+      if (response.status === 200) {
+        // Item deleted successfully, update the wishlist
+        setWishlistItems((prevItems) => prevItems.filter((item) => item._id !== packageId));
+        toast.success('Item deleted from wishlist successfully');
+      }
+    } catch (error) {
+      console.error('Error deleting item from wishlist:', error);
+      toast.error(error?.data?.message || 'Error deleting item from wishlist');
+    }
+  };
+  
+
   return (
     <section className="p-4 px-5 lg:px-0 bg-userBgColor">
       <div className="bg-white text-center md:text-left w-full max-w-[1000px] mx-auto rounded-lg shadow-md p-5 ">
-        <h3 className="text-headingColor text-[22px] leading-9 font-bold">
-          User <span className="text-primaryColor">Profile</span>
+        <div className='flex'>
+        <Link
+  to="/myBookedDetails"
+  className="text-gray-700 font-bold hover:text-purple-800 transition duration-300 text-xs"
+style={{textDecoration:'none'}}>
+  Booked Details
+</Link>
+
+
+
+
+
+
+
+          <div className='w-2/3 flex justify-end'>
+        <h3 className="text-headingColor text-[18px] leading-9 font-bold ">
+          User <span className="text-primaryColor ">Profile</span>
         </h3>
+        </div>
+          {/* Wishlist Dropdown */}
+         
+          <div className="relative flex justify-end w-1/2">
+      <button
+        onClick={handleToggleWishlist}
+        className="bg-white border-black cursor-pointer w-10 h-10 flex flex-col items-center justify-center "
+        style={{
+          borderRadius: '50%',
+          outline: 'none',
+        }}
+      >
+        <GiSelfLove size={20} color="black"  style={{ transition: 'color 0.3s', ':hover': { color: 'purple' } }} />
+        <div className="text-center text-xs mt-1 hover:text-purple-800 transition ">Wishlist</div>
+      </button>
+
+      {showWishlist &&      <WishlistModal
+              wishlistItems={wishlistItems}
+              onClose={handleToggleWishlist}
+              onDeleteItem={onDeleteItem}
+            />}
+    </div>
+    </div>
       </div>
 
       <div className="bg-white m-3 md:flex-col w-full max-w-[1000px] mx-auto rounded-lg shadow-md p-5">
@@ -197,8 +281,12 @@ const ProfileScreen = () => {
           </div>
         </form>
 
+
       </div>
+
     </section>
+ 
+    
   )
 }
 
