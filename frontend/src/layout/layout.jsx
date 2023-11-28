@@ -10,7 +10,7 @@ import UserFooter from "../components/footer/userFooter.jsx";
 import "./layout.css"
 
 
-function Layout() {
+function layout() {
   let location = useLocation();
   let hotel = location.pathname.startsWith("/hotel");
   let admin = location.pathname.startsWith("/admin");
@@ -87,4 +87,4 @@ if(admin){
   // );
 }
 
-export default Layout;
+export  {layout}
