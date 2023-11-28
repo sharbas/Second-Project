@@ -1,5 +1,5 @@
 import { ToastContainer } from "react-toastify";
-import Layout from "./layout/Layout.jsx";
+import { layout as Layout } from "./layout/layout.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import 'react-toastify/dist/ReactToastify.css'
 function App() {
