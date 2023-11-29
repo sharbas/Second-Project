@@ -74,7 +74,7 @@ const RegisterScreen = () => {
         email,
         password,
       });
-      dispatch(setCredentials({ ...res }));
+     
       navigate('/login');
     } catch (error) {
       // console.log('this is catch who is showing the error');
