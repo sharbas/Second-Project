@@ -17,6 +17,7 @@ const connet= async ()=>{
 connet()
 // const io = socketIO(server);
 const app = express()
+app.use(express.static('backend/public'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cors({
@@ -26,7 +27,6 @@ app.use(cookieParser())
 
 
 
-app.use(express.static('backend/public'))
 app.use('/api/users', userRoutes)
 app.use('/api/hotel', hotelRoutes)
 app.use('/api/admin', adminRoutes)
