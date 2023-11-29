@@ -2,7 +2,7 @@ import axios from "axios";
 
 
 const adminAxiosInstance = axios.create({
-    baseURL: 'http://localhost:5000/api/admin', // Replace with your API URL
+    baseURL: 'http://www.wetravels.online/api/admin', // Replace with your API URL
     headers: {
       
       'Content-Type': 'application/json',

@@ -45,7 +45,7 @@ const PackageAddForm = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/admin/addPackageDetails",
+        "http://www.wetravels.online/api/admin/addPackageDetails",
         formDataToSend,
         {
           headers: {

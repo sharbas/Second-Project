@@ -32,7 +32,7 @@ const HotelLogin = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/api/hotel/auth',{email, password})
+      const res = await axios.post('http://www.wetravels.online/api/hotel/auth',{email, password})
       dispatch(setCredentials({ ...res.data }));
       navigate("/hotel/home");
     } catch (error) {

@@ -169,7 +169,7 @@ style={{textDecoration:'none'}}>
           <div className="px-2 m-2">
             <div className="flex">
               <div className="mb-2 h-40 me-2 bg-blue-300 w-1/2 rounded-lg">
-                <img src={image?URL.createObjectURL(image):`http://localhost:5000/images/${oldImage}`} className='w-full h-full rounded-lg' alt="user-image" />
+                <img src={image?URL.createObjectURL(image):`http://www.wetravels.online/images/${oldImage}`} className='w-full h-full rounded-lg' alt="user-image" />
               </div>
               <div className="mb-2 ms-2 p-4 w-1/2">
                 <div>

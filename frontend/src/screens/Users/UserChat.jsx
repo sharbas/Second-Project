@@ -9,7 +9,7 @@ import { useJwt } from "react-jwt";
 
 // import * as jwt_decode from "jwt-decode";
 
-const ENDPOINT = "http://localhost:5000";
+const ENDPOINT = "http://www.wetravels.online";
 
 var socket, selectedChatCompare;
 const UserChat = () => {

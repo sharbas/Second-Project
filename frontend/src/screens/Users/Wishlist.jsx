@@ -30,7 +30,7 @@ const WishlistModal = ({ wishlistItems, onClose, onDeleteItem }) => {
             <Card className='h-96 w-90'>
               <CardHeader shadow={false} floated={false} className="h-48">
                 <img
-                  src={`http://localhost:5000/images/${item.images[0]}`}
+                  src={`http://www.wetravels.online/images/${item.images[0]}`}
                   alt="card-image"
                   className="h-full w-full object-cover"
                 />

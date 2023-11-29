@@ -66,7 +66,7 @@ const BookedTravelers = () => {
 // // }
 // console.log(formDataToSend,'thisi is formdatatosend');
 //     try{
-//       const res=await axios.put('http://localhost:5000/api/admin/updatePackage',formDataToSend, {
+//       const res=await axios.put('http://www.wetravels.online/api/admin/updatePackage',formDataToSend, {
 //         headers: {
 //           "Content-Type": "multipart/form-data",
 //         },

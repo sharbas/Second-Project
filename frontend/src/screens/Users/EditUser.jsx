@@ -14,7 +14,7 @@ function EditUser({userData}) {
       const [selectedImage, setSelectedImage] = useState(userData?.image||null);
     const handleUpdate=async(e)=>{
       e.preventDefault();
-      const imageFileName = selectedImage instanceof File ? selectedImage: selectedImage.replace("http://localhost:5000/images/", "")
+      const imageFileName = selectedImage instanceof File ? selectedImage: selectedImage.replace("http://www.wetravels.online/images/", "")
       const updatedTutorInfo = {
         firstName,
         lastName,
@@ -44,7 +44,7 @@ function EditUser({userData}) {
     // const correctPath=`${imagePath.replace(/^backend\/public\//, '')}`
     
     const modifiedImagePath = imagePath
-    ? `http://localhost:5000/${imagePath.replace(/\\/g, '/').replace(/^backend\/public\//, '')}`
+    ? `http://www.wetravels.online/${imagePath.replace(/\\/g, '/').replace(/^backend\/public\//, '')}`
     : '';
     console.log('im',modifiedImagePath)
     

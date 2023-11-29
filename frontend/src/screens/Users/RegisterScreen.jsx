@@ -47,7 +47,7 @@ const RegisterScreen = () => {
       toast.error("Passwords do not match");
     } else {
       try {
-        const res = await axios.post('http://localhost:5000/api/users/register',{name,email,password})
+        const res = await axios.post('http://www.wetravels.online/api/users/register',{name,email,password})
         dispatch(setCredentials({ ...res }));
         navigate("/login");
       } catch (error) {
