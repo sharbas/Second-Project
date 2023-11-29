@@ -390,8 +390,8 @@ const bookPackageAndHotel = async (req, res) => {
         payment_method_types: ['card'],
         line_items: line_items,
         mode: 'payment',
-        success_url: 'http://localhost:3000/success',
-        cancel_url: 'http://localhost:3000/cancel',
+        success_url: 'http://www.wetravels.online/success',
+        cancel_url: 'http://www.wetravels.online/cancel',
       });
       
   console.log('may be res aayirikum error');
