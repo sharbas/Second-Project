@@ -69,7 +69,7 @@ const RegisterScreen = () => {
     }
 
     try {
-      const res = await axios.post('http://www.wetravels.online/api/users/register', {
+      const res = await axios.post('https://www.wetravels.online/api/users/register', {
         name,
         email,
         password,
@@ -77,6 +77,7 @@ const RegisterScreen = () => {
       dispatch(setCredentials({ ...res }));
       navigate('/login');
     } catch (error) {
+      console.log('this is catch who is showing the error');
       toast.error(error?.response?.data?.message || error.message);
     }
   };
