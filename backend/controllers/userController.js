@@ -38,14 +38,14 @@ const registerUser = async (req, res) => {
         const userExists = await User.findOne({ email });
 
         if (userExists) {
-            res.status(400).json({message:constants.USER_ALREADY_EXIST})
+            return res.status(400).json({message:constants.USER_ALREADY_EXIST})
           
         }
 
         // Password validation
         const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
         if (!password.match(passwordRegex)) {
-            res.status(400).json({message:constants.PASSWORD_SECURITY})
+            return res.status(400).json({message:constants.PASSWORD_SECURITY})
         }
 
         let userToken;
@@ -60,12 +60,12 @@ const registerUser = async (req, res) => {
             userToken = generateToken(res, user._id);
             res.status(201).json({ userToken });
         } else {
-            res.status(401).json({message:constants.INVALID_EMAIL_OR_PASSWORD})
+            return res.status(401).json({message:constants.INVALID_EMAIL_OR_PASSWORD})
             
         }
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'An error occurred while processing your request.' });
+        return res.status(500).json({ error: 'An error occurred while processing your request.' });
     }
 };
 
