@@ -56,9 +56,9 @@ const registerUser = async (req, res) => {
             password,
         });
 
-console.log('abcddddddddddd');
+
         if (user){
-            console.log(user);
+          
           
             return res.status(201)
         } else {
