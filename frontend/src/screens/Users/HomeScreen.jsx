@@ -50,7 +50,7 @@ const HomeScreen = () => {
   <Link to="http://www.wetravels.online/places?category=Solo&&packageId=6544dfbc0fe7d68bdad9edf8" style={{ textDecoration: 'none' }} className="block">
   <div className="bg-white p-4 rounded-md shadow-md overflow-hidden hover:transform hover:scale-105 transition-transform">
     {/* Add content for the first banner */}
-    <img src="public/solo.jpeg" alt="Banner 1" className="w-full h-40 object-cover object-center mb-4" />
+    <img src="/solo.jpeg" alt="Banner 1" className="w-full h-40 object-cover object-center mb-4" />
     <p className="font-mono text-black">Explore solo Adventures.</p>
   </div>
 </Link>
@@ -60,7 +60,7 @@ const HomeScreen = () => {
    <Link to="/your-link-here" style={{ textDecoration: 'none' }} className="block">
   <div className="bg-white p-4 rounded-md shadow-md overflow-hidden hover:transform hover:scale-105 transition-transform">
     {/* Add content for the second banner */}
-    <img src="public/dubai.jpeg" alt="Banner 2" className="w-full h-40 object-cover mb-4" />
+    <img src="/dubai.jpeg" alt="Banner 2" className="w-full h-40 object-cover mb-4" />
     <p className="font-mono text-black">Explore Dubai with family.</p>
   </div>
   </Link>
@@ -68,7 +68,7 @@ const HomeScreen = () => {
    <Link to="http://www.wetravels.online/places?category=Honeymoon&&packageId=6544e4260fe7d68bdad9ee05" style={{ textDecoration: 'none' }} className="block">
   <div className="bg-white p-4 rounded-md shadow-md overflow-hidden hover:transform hover:scale-105 transition-transform">
     {/* Add content for the third banner */}
-    <img src="/public/honeymoon.jpg" alt="Banner 3" className="w-full h-40 object-cover mb-4" />
+    <img src="/honeymoon.jpg" alt="Banner 3" className="w-full h-40 object-cover mb-4" />
     <p className="font-mono text-black">Honeymoon To France</p>
   </div>
   </Link>
