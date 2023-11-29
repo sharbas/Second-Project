@@ -68,7 +68,7 @@ const HomeScreen = () => {
    <Link to="http://www.wetravels.online/places?category=Honeymoon&&packageId=6544e4260fe7d68bdad9ee05" style={{ textDecoration: 'none' }} className="block">
   <div className="bg-white p-4 rounded-md shadow-md overflow-hidden hover:transform hover:scale-105 transition-transform">
     {/* Add content for the third banner */}
-    <img src="public/honeymoon.jpg" alt="Banner 3" className="w-full h-40 object-cover mb-4" />
+    <img src="/public/honeymoon.jpg" alt="Banner 3" className="w-full h-40 object-cover mb-4" />
     <p className="font-mono text-black">Honeymoon To France</p>
   </div>
   </Link>
