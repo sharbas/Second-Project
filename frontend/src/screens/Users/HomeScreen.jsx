@@ -50,7 +50,7 @@ const HomeScreen = () => {
   <Link to="http://www.wetravels.online/places?category=Solo&&packageId=6544dfbc0fe7d68bdad9edf8" style={{ textDecoration: 'none' }} className="block">
   <div className="bg-white p-4 rounded-md shadow-md overflow-hidden hover:transform hover:scale-105 transition-transform">
     {/* Add content for the first banner */}
-    <img src="./public/solo.jpeg" alt="Banner 1" className="w-full h-40 object-cover object-center mb-4" />
+    <img src="public/solo.jpeg" alt="Banner 1" className="w-full h-40 object-cover object-center mb-4" />
     <p className="font-mono text-black">Explore solo Adventures.</p>
   </div>
 </Link>
