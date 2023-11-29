@@ -19,7 +19,8 @@ connet()
 const app = express()
 
 app.use(cors({
-    origin:["https://www.wetravels.online","https://wetravels.online"]
+    origin:["https://www.wetravels.online","https://wetravels.online"],
+    credentials:true
 }))
 app.use(cookieParser())
 app.use(express.static('backend/public'))
