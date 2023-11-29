@@ -74,7 +74,7 @@ const RegisterScreen = () => {
         email,
         password,
       });
-     
+toast.success('registration successfull')
       navigate('/login');
     } catch (error) {
       // console.log('this is catch who is showing the error');
