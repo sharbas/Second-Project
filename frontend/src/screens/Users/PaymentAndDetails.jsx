@@ -433,7 +433,7 @@ const chatHandler=(e)=>{
                       src={
                         client.clientPhoto
                           ? URL.createObjectURL(client.clientPhoto)
-                          : `http://www.wetravels.online/images/${client.clientPhoto}`
+                          : `https://www.wetravels.online/images/${client.clientPhoto}`
                       }
                       className="w-full h-full rounded-lg"
                       alt={[]}
@@ -471,7 +471,7 @@ const chatHandler=(e)=>{
                       src={
                         client.passportFrontPhoto
                           ? URL.createObjectURL(client.passportFrontPhoto)
-                          : `http://www.wetravels.online/images/${client.passportFrontPhoto}`
+                          : `https://www.wetravels.online/images/${client.passportFrontPhoto}`
                       }
                       className="w-full h-full rounded-lg"
                       alt={[]}
@@ -503,7 +503,7 @@ const chatHandler=(e)=>{
                       src={
                         client.passportBackPhoto
                           ? URL.createObjectURL(client.passportBackPhoto)
-                          : `http://www.wetravels.online/images/${client.passportBackPhoto}`
+                          : `https://www.wetravels.online/images/${client.passportBackPhoto}`
                       }
                       className="w-full h-full rounded-lg"
                       alt={[]}
@@ -649,7 +649,7 @@ const chatHandler=(e)=>{
                       ?.images.map((image, index) => (
                         <img
                           key={index}
-                          src={`http://www.wetravels.online/images/${image}`}
+                          src={`https://www.wetravels.online/images/${image}`}
                           alt={`hotel-image-${index}`}
                           className="w-1/2 h-24 object-cover p-2 rounded border border-black"
                         />

@@ -78,7 +78,7 @@ const HotelProfile = () => {
                     <div className="rounded-t bg-sky-100 text-white text-center py-8">
                       <div className="mb-4">
                         <img
-                          src={`http://www.wetravels.online/images/${hotel.images[0]}`}
+                          src={`https://www.wetravels.online/images/${hotel.images[0]}`}
                           alt={`Profile Image ${index}`}
                           className="w-32 h-32 object-cover mx-auto rounded-full"
                         />
@@ -232,7 +232,7 @@ const HotelProfile = () => {
                           {hotel.images.map((image, imgIndex) => (
                             <div className="w-1/3 p-2" key={imgIndex}>
                               <img
-                                src={`http://www.wetravels.online/images/${image}`}
+                                src={`https://www.wetravels.online/images/${image}`}
                                 alt={`Hotel Image ${imgIndex}`}
                                 className="w-full h-48 object-cover"
                               />

@@ -66,7 +66,7 @@ const PackageDetails = () => {
 // }
 console.log(formDataToSend,'thisi is formdatatosend');
     try{
-      const res=await axios.put('http://www.wetravels.online/api/admin/updatePackage',formDataToSend, {
+      const res=await axios.put('https://www.wetravels.online/api/admin/updatePackage',formDataToSend, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -173,7 +173,7 @@ console.log(formDataToSend,'thisi is formdatatosend');
             </td>
             <td className="border border-gray-300 px-4 py-2">
               <div className='w-25 h-25'>
-              <img src=  {`http://www.wetravels.online/images/${selectedPackage.categoryImages}`} alt="" />
+              <img src=  {`https://www.wetravels.online/images/${selectedPackage.categoryImages}`} alt="" />
               </div>
             </td>
           </tr>
@@ -202,7 +202,7 @@ console.log(formDataToSend,'thisi is formdatatosend');
                 {selectedImages.map((image, index) => (
                   <div key={index} className="w-32 h-32 relative">
                     <img
-                      src={`http://www.wetravels.online/images/${image}`}
+                      src={`https://www.wetravels.online/images/${image}`}
                       alt={`Image ${index}`}
                       className="w-full h-full object-cover"
                     />

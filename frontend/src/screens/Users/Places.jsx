@@ -113,7 +113,7 @@ const directToDetails=(category,place)=>{
       <div className="relative flex flex-col text-gray-700 bg-white shadow-md w-full md:w-1/2 lg:w-1/4 rounded-xl mb-12 mt-20" key={index}>
         <div className="relative h-40 md:h-60 overflow-hidden shadow-lg rounded-t-xl bg-clip-border shadow-blue-gray-500/40">
           <img
-            src={`http://www.wetravels.online/images/${place.images[0]}`}
+            src={`https://www.wetravels.online/images/${place.images[0]}`}
             alt="img-blur-shadow"
             className="object-cover w-full h-full"
           />

@@ -183,7 +183,7 @@ navigate(`/places?category=${category}&&packageId=${packageId}`)
                 <a href="#" className="relative">
               <img
                 className="rounded-t-lg w-80 h-60"
-                src={`http://www.wetravels.online/images/${result.categoryImages}`}
+                src={`https://www.wetravels.online/images/${result.categoryImages}`}
                 alt={`category images ${index}`}
               />
               <h5 className="absolute top-0 left-0 mb-2 text-2xl font-medium tracking-tight text-black dark:text-white p-4">
@@ -231,7 +231,7 @@ navigate(`/places?category=${category}&&packageId=${packageId}`)
                     <a href="#" className="relative">
 <img
 className="rounded-t-lg w-80 h-60"
-src={`http://www.wetravels.online/images/${pakge.categoryImages}`}
+src={`https://www.wetravels.online/images/${pakge.categoryImages}`}
 alt={`category images ${index}`}
 />
 <h5 className="absolute top-0 left-0 mb-2 text-2xl font-medium tracking-tight text-black dark:text-white p-4">

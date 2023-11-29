@@ -66,7 +66,7 @@ useEffect(()=>{
       let hotelInfo = JSON.parse(localStorage.getItem('hotelInfo'));
       const token = hotelInfo.hotelToken;
       const res = await axios.post(
-        'http://www.wetravels.online/api/hotel/addHotelDetails',
+        'https://www.wetravels.online/api/hotel/addHotelDetails',
         formDataToSend,
         {
           headers: {

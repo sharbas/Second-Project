@@ -28,7 +28,7 @@ const AdminLogin = () => {
     try {  
       
    
-        const res = await axios.post('http://www.wetravels.online/api/admin/auth', { email, password });
+        const res = await axios.post('https://www.wetravels.online/api/admin/auth', { email, password });
         dispatch(setCredentials({ ...res.data }));
         navigate("/admin/home");
         toast.success(res.data.message);

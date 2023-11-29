@@ -19,7 +19,9 @@ connet()
 const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.use(cors())
+app.use(cors({
+    origin:["https://www.wetravels.online","https://wetravels.online"]
+}))
 app.use(cookieParser())
 
 
@@ -51,7 +53,7 @@ import {Server} from 'socket.io'
 const io=new Server(server,{
     pingTimeout:60000,
     cors:{
-        origin:'http://www.wetravels.online',
+        origin:'https://www.wetravels.online',
     },
 })
 
