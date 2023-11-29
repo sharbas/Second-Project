@@ -17,14 +17,14 @@ const connet= async ()=>{
 connet()
 // const io = socketIO(server);
 const app = express()
-app.use(express.static('backend/public'))
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+
 app.use(cors({
     origin:["https://www.wetravels.online","https://wetravels.online"]
 }))
 app.use(cookieParser())
-
+app.use(express.static('backend/public'))
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
 
 app.use('/api/users', userRoutes)
