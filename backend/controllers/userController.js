@@ -203,6 +203,7 @@ const updateUserProfile = async (req, res) => {
 
 const loadPackages = async (req, res) => {
     try {
+        console.log('this loadpackages');
         const packages = await Packages.find({}).select('category categoryImages _id');
         res.status(200).json({ packages, message: 'packages loaded successfully' });
     } catch (error) {

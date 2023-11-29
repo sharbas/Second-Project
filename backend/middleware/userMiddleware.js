@@ -12,9 +12,10 @@ console.log('usertoken');
 
       // Remove the "Bearer " prefix from the userToken (if present)
       const tokenWithoutBearer = userToken.replace("Bearer ", "");
-
+      const key='abc123'
+      
       // Verify the userToken
-      const decoded = jwt.verify(tokenWithoutBearer, process.env.JWT_SECRET);
+      const decoded = jwt.verify(tokenWithoutBearer, key);
 
       // Fetch user details and attach to the request
       req.user = await User.findById(decoded.userId).select('-password');
