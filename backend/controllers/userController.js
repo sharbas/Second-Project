@@ -56,9 +56,11 @@ const registerUser = async (req, res) => {
             password,
         });
 
+console.log('abcddddddddddd');
         if (user){
+            console.log(user);
             userToken = generateToken(res, user._id);
-            res.status(201).json({ userToken });
+            return res.status(201).json({ userToken });
         } else {
             return res.status(401).json({message:constants.INVALID_EMAIL_OR_PASSWORD})
             
