@@ -43,16 +43,38 @@ const RegisterScreen = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    if (password !== confirmPassword) {
-      toast.error("Passwords do not match");
+
+    // Validation for name and email
+    if (!name) {
+      setNameError('Name is required');
+      return;
     } else {
-      try {
-        const res = await axios.post('http://www.wetravels.online/api/users/register',{name,email,password})
-        dispatch(setCredentials({ ...res }));
-        navigate("/login");
-      } catch (error) {
-       toast.error(error?.response?.data?.message || error.message);
-      }
+      setNameError('');
+    }
+
+    if (!email) {
+      setEmailError('Email is required');
+      return;
+    } else {
+      setEmailError('');
+    }
+
+    // Validation for password
+    if (password !== confirmPassword) {
+      toast.error('Passwords do not match');
+      return;
+    }
+
+    try {
+      const res = await axios.post('http://www.wetravels.online/api/users/register', {
+        name,
+        email,
+        password,
+      });
+      dispatch(setCredentials({ ...res }));
+      navigate('/login');
+    } catch (error) {
+      toast.error(error?.response?.data?.message || error.message);
     }
   };
 
@@ -78,16 +100,11 @@ const RegisterScreen = () => {
             <div className='mb-3'>
               <input type="password" name="confirmPassword" value={confirmPassword} placeholder='Confirm Password' className='form-control' onChange={(e)=>setConfirmPassword(e.target.value)} />
             </div>
-            <div className='mb-2'>
-              <input type='checkbox' className='custom-control custom-checkbox' id='check' />
-              <label htmlFor='check' className='custom-input-label ms-2'>
-                Remember me
-              </label>
-            </div>            <div className='d-grid mt-2'>
+                        <div className='d-grid mt-2'>
               <button type="submit" className='btn bg-primary text-white mb-3'>Sign Up</button>
             </div>
-            <p className='text-end mt-2'>
-              <Link to='/login' className='ms-2' style={{textDecoration:'none'}}>Sign In</Link>
+            <p className='text-end mt-2 sm:flex'>
+            Already have Account?  <Link to='/login' className='ms-2' style={{textDecoration:'none'}}>Sign In</Link>
             </p>
             <GoogleLogin
               onSuccess={credentialResponse => {

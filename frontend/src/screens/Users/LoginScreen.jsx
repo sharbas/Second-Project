@@ -84,7 +84,7 @@ const LoginScreen = () => {
             Sign In
           </button>
         </div>
-        <div className='d-flex justify-content-between mb-3'>
+        <div className='d-flex justify-content-between mb-3 sm:flex'>
           <p className='mt-2'>
             <a href='/register' style={{textDecoration:'none'}}>Register</a>
           </p>
