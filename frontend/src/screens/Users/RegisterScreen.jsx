@@ -44,44 +44,49 @@ const RegisterScreen = () => {
     }
   };
 
-  const submitHandler = async (e) => {
-    e.preventDefault();
+// Updated submitHandler
+const submitHandler = async (e) => {
+  e.preventDefault();
 
-    // Validation for name and email
-    if (!name) {
-      setNameError('Name is required');
-      return;
-    } else {
-      setNameError('');
-    }
+  // Validation for name and email
+  if (!name) {
+    setNameError('Name is required');
+    return;
+  } else {
+    setNameError('');
+  }
 
-    if (!email) {
-      setEmailError('Email is required');
-      return;
-    } else {
-      setEmailError('');
-    }
+  if (!email) {
+    setEmailError('Email is required');
+    return;
+  } else {
+    setEmailError('');
+  }
 
-    // Validation for password
-    if (password !== confirmPassword) {
-      toast.error('Passwords do not match');
-      return;
-    }
+  // Validation for password
+  if (password !== confirmPassword) {
+    toast.error('Passwords do not match');
+    return;
+  }
 
-    try {
-      const res = await axios.post('https://www.wetravels.online/api/users/register', {
-        name,
-        email,
-        password,
-      });
-toast.success('registration successfull')
+  try {
+    const res = await axios.post('https://www.wetravels.online/api/users/register', {
+      name,
+      email,
+      password,
+    });
+
+    // Assuming that your API returns a status of 201 for successful registration
+    if (res.status === 201) {
+      toast.success('Registration successful');
       navigate('/login');
-    } catch (error) {
-      // console.log('this is catch who is showing the error');
-      toast.error(error?.response?.data?.message || error.message);
+    } else {
+      toast.error('Failed to register user. Please try again.');
     }
-  };
-
+  } catch (error) {
+    toast.error(error?.response?.data?.message || error.message);
+  }
+};
   return (
 <>
 <GoogleOAuthProvider clientId='704159527663-q1i414p15g1604vgsqchpjh8ftlco786.apps.googleusercontent.com'>

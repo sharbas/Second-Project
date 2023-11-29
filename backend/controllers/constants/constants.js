@@ -12,7 +12,7 @@ const constants={
     PASSWORD_RESET_SUCCESSFULLY:'Password reset successfully',
     USER_NOT_FOUND:'User Not Found',
     USER_LOGOUT_SUCCESSFULLY:'User Logout',
-    PASSWORD_SECURITY:'Password must contain 8 characters, at least 1 uppercase letter, 1 lowercase letter and 1 digit.',
+    PASSWORD_SECURITY:'Password must be at least 6 characters long.',
     EMAIL_VERIFY:'its working',
     API_ERROR:'An error occurred while processing your request.',
 

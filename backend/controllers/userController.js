@@ -31,46 +31,39 @@ const authUser = async (req, res) => {
     }
 };
 
+// Updated registerUser controller
 const registerUser = async (req, res) => {
     try {
-      
-        const { name, email, password } = req.body;
-        const userExists = await User.findOne({ email });
-
-        if (userExists) {
-            return res.status(400).json({message:constants.USER_ALREADY_EXIST})
-          
-        }
-
-        // Password validation
-        const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
-        if (!password.match(passwordRegex)) {
-            return res.status(400).json({message:constants.PASSWORD_SECURITY})
-        }
-
-        let userToken;
-
-        const user = await User.create({
-            name,
-            email,
-            password,
-        });
-
-
-        if (user){
-          
-          
-            return res.status(201)
-        } else {
-            return res.status(401).json({message:constants.INVALID_EMAIL_OR_PASSWORD})
-            
-        }
+      const { name, email, password } = req.body;
+      const userExists = await User.findOne({ email });
+  
+      if (userExists) {
+        return res.status(400).json({ message: constants.USER_ALREADY_EXIST });
+      }
+  
+      // Password validation
+      const passwordRegex = /.{6,}/;
+;
+      if (!password.match(passwordRegex)) {
+        return res.status(400).json({ message: constants.PASSWORD_SECURITY });
+      }
+  
+      const user = await User.create({
+        name,
+        email,
+        password,
+      });
+  
+      if (user) {
+        return res.status(201).json({ message: 'User registered successfully' });
+      } else {
+        return res.status(401).json({ message: constants.INVALID_EMAIL_OR_PASSWORD });
+      }
     } catch (error) {
-        console.error(error);
-        return res.status(500).json({ error: 'An error occurred while processing your request.' });
+      console.error(error);
+      return res.status(500).json({ error: 'An error occurred while processing your request.' });
     }
-};
-
+  };
 const verifyEmail = async (req, res) => {
     try {
         const { email } = req.body;
