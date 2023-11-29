@@ -17,6 +17,9 @@ const RegisterScreen = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  const [nameError, setNameError] = useState('');
+  const [emailError, setEmailError] = useState('');
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -89,10 +92,11 @@ const RegisterScreen = () => {
             <h3 className='text-center'>Sign Up</h3>
             <div className='mb-3'>
               <input type="text" name="name" placeholder='Enter Name' value={name} className='form-control' onChange={(e)=>setName(e.target.value)} />
-            
+              <div className='text-danger'>{nameError}</div>
             </div>
             <div className='mb-3'>
               <input type="email" name="email" value={email} placeholder='Enter Email' className='form-control' onChange={(e)=>setEmail(e.target.value)} />
+              <div className='text-danger'>{emailError}</div>
             </div>
             <div className='mb-3'>
               <input type="password" name="password" value={password} placeholder='Enter password' className='form-control' onChange={(e)=>setPassword(e.target.value)} />
