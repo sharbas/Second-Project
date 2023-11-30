@@ -1,7 +1,8 @@
 import jwt from 'jsonwebtoken'
 
 const hotelGenerateToken=(res,hotelId)=>{
-    const token=jwt.sign({hotelId},process.env.JWT_SECRET,{
+    const key='abc123'
+    const token=jwt.sign({hotelId},key,{
         expiresIn:'30d'
     })
     res.cookie('htljwt',token,{

@@ -9,7 +9,6 @@ import HotelDetails from '../models/hotelDetailsModel.js'
 
 const authadmin=asyncHandler(async(req,res)=>{
         const {email,password}=req.body
-   
         const admin=await Admin.findOne({email})
         if(admin && await admin.matchPassword(password)){
         const adminToken= generateToken(res,admin._id)

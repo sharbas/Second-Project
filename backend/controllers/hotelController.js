@@ -9,6 +9,7 @@ import BookedTravelers from "../models/bookedTravelers.js"
 
   const authHotel = asyncHandler(async (req, res) => {
   try {
+    console.log('this is');
     const { email, password } = req.body;
     const hotel = await Hotel.findOne({ email });
     if (hotel && (await hotel.matchPassword(password))) {
