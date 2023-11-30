@@ -169,10 +169,6 @@ navigate(`/places?category=${category}&&packageId=${packageId}`)
         </div>
       </div>
       <div>
-        <img src="https://www.wetravels.online/images/categoryImages_1699252235506.jpg" alt="" style={{height:'3px',width:'3px'}} />
-        <img src="https://www.wetravels.online/public/images/categoryImages_1699252235506.jpg" alt="" style={{height:'3px',width:'3px'}} />
-        <img src="https://www.wetravels.online/categoryImages_1699252235506.jpg" alt="" style={{height:'3px',width:'3px'}} />
-        <img src="/images/categoryImages_1699252235506.jpg" alt="" style={{height:'3px',width:'3px'}} />
       </div>
 
       <div className="flex flex-wrap bg-userBgColor justify-between px-20 pt-60">
@@ -189,7 +185,7 @@ navigate(`/places?category=${category}&&packageId=${packageId}`)
                 <a href="#" className="relative">
               <img
                 className="rounded-t-lg w-80 h-60"
-                src={`https://www.wetravels.online/images/${result.categoryImages}`}
+                src={`/${result.categoryImages}`}
                 alt={`category images ${index}`}
               />
               <h5 className="absolute top-0 left-0 mb-2 text-2xl font-medium tracking-tight text-black dark:text-white p-4">
