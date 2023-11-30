@@ -25,7 +25,6 @@ const HotelProfile = () => {
         setHotelDetails(res.data.hotel);
         setUserDetails(res.data.hotelUser);
       } catch (error) {
-        console.error("Error fetching data: ", error);
       }
     };
     fetchData();
