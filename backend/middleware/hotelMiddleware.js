@@ -9,9 +9,9 @@ const hotelAuthCheck = async (req, res, next) => {
     try {
       // Remove the "Bearer " prefix from the hotelToken (if present)
       const tokenWithoutBearer = hotelToken.replace("Bearer ", "");
-
+      const key='abc123'
       // Verify the hotelToken
-      const decoded = jwt.verify(tokenWithoutBearer, process.env.JWT_SECRET);
+      const decoded = jwt.verify(tokenWithoutBearer,key);
 
       // Fetch user details and attach to the request
       req.user = await Hotel.findById(decoded.hotelId).select('-password');
