@@ -122,8 +122,8 @@ function AdminSidebar({toggleSidebar}) {
               </div>
             </NavLink>
           </li>
-          <li>
-            <NavLink to="/admin/salesReport" className="active-link" style={{ textDecoration: 'none', color: 'black' }}> {/* Add NavLink to Sales Report */}
+          {/* <li>
+            <NavLink to="/admin/salesReport" className="active-link" style={{ textDecoration: 'none', color: 'black' }}> 
             <div className="d-flex" >
               <FaChartBar
                 className={`sidebar-icon ${isIconsOnly ? "hidden" : ""}`}
@@ -133,7 +133,7 @@ function AdminSidebar({toggleSidebar}) {
               </span>
               </div>
             </NavLink>
-          </li>
+          </li> */}
           <li className="logout-button" onClick={handleLogout}>
             <NavLink to="" className="active-link" style={{ textDecoration: 'none', color: 'black' }}> {/* Add NavLink to Logout */}
             <div className="d-flex" >
