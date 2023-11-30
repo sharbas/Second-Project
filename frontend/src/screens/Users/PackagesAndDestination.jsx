@@ -169,15 +169,7 @@ navigate(`/places?category=${category}&&packageId=${packageId}`)
         </div>
       </div>
       <div>
-        <img src="/images/images_1699435632721.jpg" alt="" />
-        <img src="/images/images_1699435632721.jpg" alt="" />
-        <img src="/public/images/images_1699435632721.jpg" alt="" />
-        <img src="/backend/public/images/images_1699435632721.jpg" alt="" />
-        <img src="https://www.wetravels.online/images/images_1699435632721.jpg" alt="" />
-        <img src="https://www.wetravels.online/images_1699435632721.jpg" alt="" />
-        <img src="https://www.wetravels.online/public/images/images_1699435632721.jpg" alt="" />
-        <img src="https://www.wetravels.online/backend/public/images/images_1699435632721.jpg" alt="" />
-        <img src="/images/images_1699435632721.jpg" alt="" />
+        
       </div>
 
       <div className="flex flex-wrap bg-userBgColor justify-between px-20 pt-60">
