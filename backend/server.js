@@ -24,6 +24,7 @@ app.use(cors({
 }))
 app.use(cookieParser())
 app.use(express.static('backend/public'))
+app.use('/images',express.static('backend/public/images'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
