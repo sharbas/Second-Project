@@ -169,7 +169,10 @@ navigate(`/places?category=${category}&&packageId=${packageId}`)
         </div>
       </div>
       <div>
-        
+        <img src="https://www.wetravels.online/images/categoryImages_1699252235506.jpg" alt="" style={{height:'3px',width:'3px'}} />
+        <img src="https://www.wetravels.online/public/images/categoryImages_1699252235506.jpg" alt="" style={{height:'3px',width:'3px'}} />
+        <img src="https://www.wetravels.online/categoryImages_1699252235506.jpg" alt="" style={{height:'3px',width:'3px'}} />
+        <img src="/images/categoryImages_1699252235506.jpg" alt="" style={{height:'3px',width:'3px'}} />
       </div>
 
       <div className="flex flex-wrap bg-userBgColor justify-between px-20 pt-60">
