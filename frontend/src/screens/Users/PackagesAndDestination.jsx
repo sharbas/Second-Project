@@ -170,6 +170,7 @@ navigate(`/places?category=${category}&&packageId=${packageId}`)
       </div>
       <div>
         <img src="/images/images_1699435632721.jpg" alt="" />
+        <img src="/images/images_1699435632721.jpg" alt="" />
         <img src="/public/images/images_1699435632721.jpg" alt="" />
         <img src="/backend/public/images/images_1699435632721.jpg" alt="" />
         <img src="https://www.wetravels.online/images/images_1699435632721.jpg" alt="" />
