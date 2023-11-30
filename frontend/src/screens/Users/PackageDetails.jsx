@@ -110,7 +110,7 @@ console.log('this is details',details);
 <div className="w-5/6 mx-auto  m-20">
 <div className="relative h-40 md:h-60 overflow-hidden shadow-md rounded-xl bg-clip-border shadow-blue-gray-500/40 mb-8">
   <img
-    src="public/travelImage5.jpg"
+    src="/travelImage5.jpg"
     alt="banner"
     className="object-cover w-full h-full hover:opacity-75 transition-opacity duration-300 ease-in-out"
   />
@@ -125,7 +125,7 @@ console.log('this is details',details);
 </div>
 
   {isDetails ? (
-    <div className="bg-white text-center md:text-left w-full max-w-[1400px] mx-auto rounded-lg shadow-md p-5" style={{ backgroundImage: 'url("public/detailsBg2.jpg")' }}>
+    <div className="bg-white text-center md:text-left w-full max-w-[1400px] mx-auto rounded-lg shadow-md p-5" style={{ backgroundImage: 'url("/detailsBg2.jpg")' }}>
    
       <div className="bg-opacity-60 bg-cover bg-center h-32 relative   flex justify-between rounded" style={{ backgroundColor: 'rgba(0, 0, 0, 0.3)'}}>
   <div className="text-white text-2xl font-serif absolute bottom-4 left-4 pb-8 ">

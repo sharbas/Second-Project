@@ -89,7 +89,7 @@ const directToDetails=(category,place)=>{
   {/* Image and Text Container */}
   <div className="absolute top-0 left-0 w-full h-full">
     <img
-      src="public/travelImage5.jpg"
+      src="/travelImage5.jpg"
       alt="banner"
       className="object-cover w-full h-60 hover:opacity-80 transition-opacity duration-300 ease-in-out "
     />

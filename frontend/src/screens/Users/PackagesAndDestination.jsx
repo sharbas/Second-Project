@@ -143,7 +143,7 @@ navigate(`/places?category=${category}&&packageId=${packageId}`)
 
 
     <div>
-      <div className="relative bg-cover bg-center h-60 w-full" style={{ backgroundImage: 'url("public/travelIamge10.jpg")' }}>
+      <div className="relative bg-cover bg-center h-60 w-full" style={{ backgroundImage: 'url("/travelIamge10.jpg")' }}>
         <form className="flex items-center" onSubmit={handleSearch}>
           {/* ... (your search input and button) ... */}
           <label for="simple-search" className="sr-only">Search</label>
@@ -162,7 +162,7 @@ navigate(`/places?category=${category}&&packageId=${packageId}`)
 <span className="sr-only">Search</span>
 </button>
         </form>
-        <div className="absolute top-15 left-0 w-full h-full bg-black bg-cover bg-center opacity-65 border-solid" style={{ backgroundImage: 'url("public/travelIamge10.jpg")' }}></div>
+        <div className="absolute top-15 left-0 w-full h-full bg-black bg-cover bg-center opacity-65 border-solid" style={{ backgroundImage: 'url("/travelIamge10.jpg")' }}></div>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white">
           <h1 className="text-4xl font-bold animate__animated animate__fadeIn text-black ">Explore The World</h1>
           <p className="text-lg text-black mt-2 font-sans hover:text-white">Find joy in the journey, and every mile will be worth your while.</p>
