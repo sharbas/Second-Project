@@ -26,7 +26,7 @@ app.use(cors({
 app.use(cookieParser());
 
 app.use(express.static("backend/public"));
-app.use("/images",express.static("backend/public/images"));
+app.use("/images",express.static("public/images"));
 app.use("/api/users", userRoutes);
 app.use("/api/hotel", hotelRoutes);
 app.use("/api/admin", adminRoutes);
