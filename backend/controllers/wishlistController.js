@@ -16,7 +16,6 @@ const addToWishlist=async(req,res)=>{
         packageId:packageId
        })
     
-       console.log(wishPackage,'this is wishlist');
         res.status(200).json({wishPackage,message:"liked"})
     }catch(error){
         

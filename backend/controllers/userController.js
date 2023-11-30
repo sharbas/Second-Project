@@ -203,7 +203,6 @@ const updateUserProfile = async (req, res) => {
 
 const loadPackages = async (req, res) => {
     try {
-        console.log('this loadpackages');
         const packages = await Packages.find({}).select('category categoryImages _id');
         res.status(200).json({ packages, message: 'packages loaded successfully' });
     } catch (error) {
@@ -256,7 +255,6 @@ const userDetails=await BookedTravelers.create({
 
 
 })
-console.log(userDetails._id,'userdetailssssss');
 res.status(200).json({message:'the first details added successfully',bookedUserId:userDetails._id})
 
 
@@ -292,7 +290,6 @@ try{
 
 const bookPackageAndHotel = async (req, res) => {
     try {
-        console.log('this is bookPackageandhotel');
         
         const { selectedHotelId, flightDate, clients, clientPhotos, passportFrontPhotos, passportBackPhotos } = req.body;
         const bookedUserId = req.query.bookedUserId;
@@ -390,7 +387,6 @@ const bookPackageAndHotel = async (req, res) => {
         cancel_url: 'https://www.wetravels.online/cancel',
       });
       
-  console.log('may be res aayirikum error');
       res.status(200).json({id:session.id, message: 'Traveler details added successfully', data: updatedBooking });
     } catch (error) {
       console.error(error);
@@ -401,24 +397,19 @@ const bookPackageAndHotel = async (req, res) => {
 
   const getSearchItem=async(req,res)=>{
     try{
-        console.log('this is getsearchitem');
         const searchTerm = req.query.term;
-        console.log('searchTerm',searchTerm);
 
         const regex = new RegExp(searchTerm, 'i'); // 'i' for case-insensitive
         const results = await Packages.find({ category: { $regex: regex } });
-    console.log('this will be the result',results);
         res.status(200).json(results);
 
     }catch(error){
-        console.error('Error searching for packages:', error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
   }
 
   const MyBookedDetails = async (req, res) => {
     try {
-      console.log('this is MyBookedDetails',req.user._id);
       const bookedTravelers = await BookedTravelers.find({userId:req.user._id})
         .populate({
           path: 'packageId',
@@ -463,11 +454,9 @@ const bookPackageAndHotel = async (req, res) => {
         totalAmount: traveler.totalAmount,
       }));
   
-      console.log('this is combined bookedTravel details', combinedData);
   
       res.status(200).json(combinedData);
     } catch (error) {
-      console.error(error);
       res.status(500).send('Internal Server Error');
     }
   };
@@ -476,9 +465,7 @@ const bookPackageAndHotel = async (req, res) => {
   const googleAuth=async(req,res)=>{
     try{
         let token = req.body.credentialResponse.credential
-        console.log('this is googleauth token',token);
         let decoded = jwt.decode(token)
-        console.log('this is googleauth decoded',decoded);
 
         const { name, email, sub } = decoded
         const userExists = await User.findOne({ email });
@@ -511,11 +498,8 @@ const bookPackageAndHotel = async (req, res) => {
 
   const googleLogin=async(req,res)=>{
     try{
-        console.log('thhis is googleLogin');
         let token = req.body.credentialResponse.credential
-        console.log('this is googleLogin token',token);
         let decoded = jwt.decode(token)
-        console.log('this is googleLogin decoded',decoded);
         const { email } = decoded
         const userExists = await User.findOne({ email });
   if(userExists && !userExists.isBlocked){

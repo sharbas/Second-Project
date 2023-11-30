@@ -43,7 +43,6 @@ const addHotelDetails = asyncHandler(async (req, res) => {
   const fetchLocation=async(req,res)=>{
     try{
       const location=await Packages.find({},{_id:0,place:1})
-      console.log(location,'this is location');
 res.status(200).json({location})
 
     }catch(error){

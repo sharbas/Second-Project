@@ -185,7 +185,6 @@ import BookedTravelers from "../models/bookedTravelers.js"
   
       // Extract results from the aggregation
       const hotelStats = hotelAggregation[0];
-  console.log('hotelStats',hotelStats);
       // Task 2: Booking Trends Over Time
       const bookingTrends = await BookedTravelers.aggregate([
         {
@@ -212,7 +211,6 @@ import BookedTravelers from "../models/bookedTravelers.js"
         },
       ]);
   
-      console.log('this is bookingTrendsAggregation',bookingTrends[0]);
    
    // Aggregation pipeline to get roomType count
 const roomTypeAggregation = await HotelDetails.aggregate([
@@ -242,7 +240,6 @@ const roomTypeAggregation = await HotelDetails.aggregate([
           count: entry.count,
         }));
     
-        console.log('Room Types with Count:', roomTypesWithCount);
 
 
 
@@ -252,7 +249,6 @@ const roomTypeAggregation = await HotelDetails.aggregate([
         bookingTrends,
         roomTypesWithCount,
       };
-  console.log('result',result);
       res.json({hotelStats,bookingTrends,roomTypesWithCount});
     } catch (error) {
       console.error('Error fetching dashboard data:', error);

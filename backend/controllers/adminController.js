@@ -204,7 +204,6 @@ const barGraphData = await BookedTravelers.aggregate([
       barGraph: barGraphData,
       statistics: statisticsData[0], // Use [0] because it's a single group result
     };
-console.log(responseData,'responseDataaaaaaaaaaaaaaaaaaaaaaaaa');
     res.status(200).json({ success: true, data: responseData });
   } catch (error) {
     console.error(error);

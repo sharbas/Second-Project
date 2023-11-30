@@ -16,7 +16,6 @@ let chatRoom=await ChatRoom.findOne({
     user:user,
     hotel:{ $eq: hotelId } 
 })
-// console.log('After findOne - chatRoom:', chatRoom);
 
 if(!chatRoom){
     chatRoom=new ChatRoom({
@@ -29,7 +28,6 @@ if(!chatRoom){
 }
 
 const roomDetails=await ChatRoom.findOne({_id:chatRoom._id}).populate({path:'hotel',select:'_id name'})
-// console.log(roomDetails,'roomDetails');
 res.status(200).json(roomDetails)
 
     }catch(error){
@@ -42,9 +40,7 @@ res.status(200).json(roomDetails)
 
 const sendChat=async(req,res)=>{
     try{
-        // console.log('this is send chat');
         const {content}=req.body
-        // console.log(content,'this is content');
         const {chatid,type}=req.params
         const sender=req.user._id
 
@@ -108,9 +104,7 @@ const getHotelRooms=async(req,res)=>{
 
 const getMessages=async(req,res)=>{
     try{
-        // console.log('this is getmessages');
         const {roomid}=req.params
-        // console.log(roomid);
         const messages=await ChatMessage.find({room:roomid}).sort({createdAt:1})
 
         if(messages){
