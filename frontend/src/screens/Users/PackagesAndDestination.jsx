@@ -168,6 +168,16 @@ navigate(`/places?category=${category}&&packageId=${packageId}`)
           <p className="text-lg text-black mt-2 font-sans hover:text-white">Find joy in the journey, and every mile will be worth your while.</p>
         </div>
       </div>
+      <div>
+        <img src="/images/images_1699435632721.jpg" alt="" />
+        <img src="/public/images/images_1699435632721.jpg" alt="" />
+        <img src="/backend/public/images/images_1699435632721.jpg" alt="" />
+        <img src="https://www.wetravels.online/images/images_1699435632721.jpg" alt="" />
+        <img src="https://www.wetravels.online/images_1699435632721.jpg" alt="" />
+        <img src="https://www.wetravels.online/public/images/images_1699435632721.jpg" alt="" />
+        <img src="https://www.wetravels.online/backend/public/images/images_1699435632721.jpg" alt="" />
+        <img src="/images/images_1699435632721.jpg" alt="" />
+      </div>
 
       <div className="flex flex-wrap bg-userBgColor justify-between px-20 pt-60">
         {searchResults.length > 0 ? (
@@ -184,26 +194,6 @@ navigate(`/places?category=${category}&&packageId=${packageId}`)
               <img
                 className="rounded-t-lg w-80 h-60"
                 src={`https://www.wetravels.online/images/${result.categoryImages}`}
-                alt={`category images ${index}`}
-              />
-              <img
-                className="rounded-t-lg w-80 h-60"
-                src={`https://www.wetravels.online/public/images/${result.categoryImages}`}
-                alt={`category images ${index}`}
-              />
-              <img
-                className="rounded-t-lg w-80 h-60"
-                src={`/public/images/${result.categoryImages}`}
-                alt={`category images ${index}`}
-              />
-                <img
-                className="rounded-t-lg w-80 h-60"
-                src={`/backend/public/images/${result.categoryImages}`}
-                alt={`category images ${index}`}
-              />
-               <img
-                className="rounded-t-lg w-80 h-60"
-                src={`/images/${result.categoryImages}`}
                 alt={`category images ${index}`}
               />
               <h5 className="absolute top-0 left-0 mb-2 text-2xl font-medium tracking-tight text-black dark:text-white p-4">
