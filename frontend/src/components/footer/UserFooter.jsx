@@ -7,7 +7,7 @@ function UserFooter() {
       <div className="flex items-center space-x-4">
       <img src="/footeruserlogo.png" alt="Your Image Alt Text" style={{ height: '70px', width: '70px',marginRight:'24rem' }} />
       </div>
-      <div className="">
+      <div className="lg:ml-80">
         <ul>
           <li><a href="/" className="hover:text-gray-400">Home</a></li>
           <li><a href="/destinations" className="hover:text-gray-400">Destinations</a></li>
