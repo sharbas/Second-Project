@@ -193,7 +193,7 @@ const UserChat = () => {
             </li>
           </ul>
         </div>
-        <div className="hidden lg:col-span-2 lg:block">
+        <div className="hidden lg:col-span-2 lg:block sm:block xs:block">
           {chatId ? (
             <div className="w-full">
               <div>
