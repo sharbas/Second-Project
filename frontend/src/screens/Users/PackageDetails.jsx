@@ -146,7 +146,7 @@ console.log('this is details',details);
       <div className="mt-4 flex justify-start">
         <h2 className="text-xl font-meduim mb-2">Per Person: ₹{details[0].price}</h2>
       </div>
-      <div className="mt-4 ml-40 bg-gray rounded-lg shadow-lg w-4/5 ">
+      <div className="mt-4 xl:ml-40 bg-gray rounded-lg shadow-lg w-4/5 ">
         <h2 className="text-xl font-semibold m-6 pt-14">Book your ticket</h2>
         <form onSubmit={submitHandler} className="grid grid-cols-2 gap-8">
           <div className="mb-4">
@@ -228,7 +228,7 @@ console.log('this is details',details);
               ))}
             </select>
           </div>
-          <div className="mb-10  col-span-2 flex justify-end mr-11">
+          <div className="mb-10  col-span-2 xl:flex justify-end mr-11">
             <button
               type="submit"
               className="bg-blue-500 text-white text-sm py-1 px-4 rounded-lg w-1/3 flex items-center justify-between"

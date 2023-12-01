@@ -136,8 +136,8 @@ toast.error(error?.error)
         <div id="toggle-button" onClick={handleMobileMenuClick}>
           <i
             id="bar"
-            className={mobileMenuOpen ? 'fas fa-times' : 'fas fa-bars'}
-          >{'☰'}</i>
+            className={mobileMenuOpen ? 'fas fa-times' : 'fas fa-bars'} style={{color:'white'}}
+          ></i>
         </div>
       </div>
     </nav>

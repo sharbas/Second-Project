@@ -8,7 +8,6 @@ const HomeScreen = () => {
     backgroundImage: 'url("/userhomescreen.png.jpg")',
     backgroundSize: "cover",
     backgroundPosition: "center",
-    height: "100vh",
     textAlign: "center",
   };
 
@@ -41,7 +40,7 @@ const HomeScreen = () => {
   return (
     <div style={homeStyles} className="relative">
       <div style={overlayStyles}></div>
-      <div className="flex flex-col items-center justify-center h-full relative z-10 mt-12">
+      <div className="flex flex-col items-center justify-center h-full relative mt-12">
         <h1 style={titleStyles}>EXPLORE</h1>
         <h5 style={subtitleStyles}>The World With<br /> We Travel</h5>
            {/* Additional Banners, Images, and Category Sections */}
