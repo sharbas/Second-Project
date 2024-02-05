@@ -13,7 +13,7 @@ const adminAuthCheck = async (req, res, next) => {
 
       // Remove the "Bearer " prefix from the userToken (if present)
       const tokenWithoutBearer = adminToken.replace("Bearer ", "");
-const key='abc123'
+      const key='abc123'
       // Verify the userToken
       const decoded = jwt.verify(tokenWithoutBearer, key);
 

@@ -1,12 +1,12 @@
 import express from 'express'
+
+const router=express.Router()
 import { authUser, registerUser,
     logoutUser,
     getUserProfile,
     updateUserProfile,verifyEmail,confirmOtp,resetPassword,otpLoginVerifyEmail,otpLogin,
     loadPackages,loadPlacesData,loadFullDetails,mainUserDetails,fetchHotelAndPackagedDetails,
     bookPackageAndHotel,getSearchItem,MyBookedDetails,googleLogin ,googleAuth} from '../controllers/userController.js'
-
-const router=express.Router()
 import {addToWishlist,removeFromWishlist,getWishlist,wishlistOfUser,deleteWishlist} from '../controllers/wishlistController.js'
 import  userAuthCheck from '../middleware/userMiddleware.js'
 import {upload} from '../middleware/multer.js'

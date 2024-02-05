@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const connectDB = async () => {
   try {
-    const conn = await mongoose.connect("mongodb://mohammedsharbas33:sharbas12345678@ac-ohqgxsc-shard-00-00.6fhmvos.mongodb.net:27017,ac-ohqgxsc-shard-00-01.6fhmvos.mongodb.net:27017,ac-ohqgxsc-shard-00-02.6fhmvos.mongodb.net:27017/?ssl=true&replicaSet=atlas-cz2k8d-shard-0&authSource=admin&retryWrites=true&w=majority", {
+    const conn = await mongoose.connect("mongodb://mohammedsharbas32:X63yiXNGJpdbSje0@ac-vh0pn7e-shard-00-00.vp67l40.mongodb.net:27017,ac-vh0pn7e-shard-00-01.vp67l40.mongodb.net:27017,ac-vh0pn7e-shard-00-02.vp67l40.mongodb.net:27017/?ssl=true&replicaSet=atlas-14blpw-shard-0&authSource=admin&retryWrites=true&w=majority", {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       // useCreateIndex: true, 

@@ -22,7 +22,7 @@ const authUser = async (req, res) => {
             }
             res.status(201).json({ userToken,message:constants.LOGIN_SUCCESS });
         } else {
-            res.status();
+           
             res.status(401).json({ message:constants.INVALID_EMAIL_OR_PASSWORD });
         }
     } catch (error) {

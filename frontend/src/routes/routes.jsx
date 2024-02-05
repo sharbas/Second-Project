@@ -123,7 +123,7 @@ const Routers = () => {
 
          
       </Route>
-      {/* <Route path="*" element={<NotFound/>} /> */}
+      <Route path="*" element={<NotFound/>} />
     </Routes>
   );
 };
