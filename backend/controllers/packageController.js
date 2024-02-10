@@ -3,7 +3,7 @@ import Packages from '../models/packageModel.js'
 import asyncHandler from "express-async-handler"
 
 const addPackageDetails = asyncHandler(async (req, res) => {
-
+console.log('its coming here in the addPackageDetails controller');
     const {
       category,
       place,

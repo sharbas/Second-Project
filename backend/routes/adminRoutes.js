@@ -24,6 +24,7 @@ router.get("/loadUsers",adminAuthCheck, adminLoadUsers);
 router.get("/loadHotelUsers",adminAuthCheck, adminLoadHotelUsers);
 router.put("/blockUnblockUser", blockUnblockUser)
 router.post(
+  console.log('its in the route of addpackagedetails'),
   "/addPackageDetails",
   upload.fields([
     { name: "categoryImages", maxCount: 1 }, // Max 1 file for category image
