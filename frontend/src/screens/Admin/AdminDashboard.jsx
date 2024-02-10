@@ -9,42 +9,42 @@ const [dashboardData,setDashboardData]=useState(null)
 const [isDashboardData,isSetDashboardData]=useState(false)
 
 
-  // useEffect(()=>{
-  //   const fetchDataForDashBoard=async()=>{
-  //    try{
-  //  const res=await adminAxiosInstance.get('/dashboardData')
-  //  console.log(res.data.responseData,'res.data.responseData')
-  //  console.log(res.data,'res.data')
-  //  setDashboardData(res.data)
+  useEffect(()=>{
+    const fetchDataForDashBoard=async()=>{
+     try{
+   const res=await adminAxiosInstance.get('/dashboardData')
+   console.log(res.data.responseData,'res.data.responseData')
+   console.log(res.data,'res.data')
+   setDashboardData(res.data)
    
-  //    }catch(error){
+     }catch(error){
    
-  //    }
-  //   }
-  //   fetchDataForDashBoard()
+     }
+    }
+    fetchDataForDashBoard()
    
-  //  },[])
+   },[])
 
-  //  useEffect(()=>{
-  //   isSetDashboardData(true)
-  //   console.log(dashboardData,'dashboardData in useEffect');
-  //  },[dashboardData])
-  // // Sample data for pie chart and bar graph
-  // const pieChartData = [
-  //   { name: 'Category A', value: 400 },
-  //   { name: 'Category B', value: 300 },
-  //   { name: 'Category C', value: 200 },
-  // ];
+   useEffect(()=>{
+    isSetDashboardData(true)
+    console.log(dashboardData,'dashboardData in useEffect');
+   },[dashboardData])
+  // Sample data for pie chart and bar graph
+  const pieChartData = [
+    { name: 'Category A', value: 400 },
+    { name: 'Category B', value: 300 },
+    { name: 'Category C', value: 200 },
+  ];
 
-  // const barGraphData = [
-  //   { name: 'Data 1', value: 100 },
-  //   { name: 'Data 2', value: 200 },
-  //   { name: 'Data 3', value: 300 },
-  //   { name: 'Data 4', value: 400 },
-  //   { name: 'Data 5', value: 500 },
-  // ];
+  const barGraphData = [
+    { name: 'Data 1', value: 100 },
+    { name: 'Data 2', value: 200 },
+    { name: 'Data 3', value: 300 },
+    { name: 'Data 4', value: 400 },
+    { name: 'Data 5', value: 500 },
+  ];
 
-  // const colors = ['#0088FE', '#00C49F', '#FFBB28'];
+  const colors = ['#0088FE', '#00C49F', '#FFBB28'];
 
   return (
 
