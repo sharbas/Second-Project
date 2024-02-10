@@ -31,6 +31,7 @@ const AdminLogin = () => {
         const res = await axios.post('https://travelwithwetravel.website/api/admin/auth', { email, password });
         dispatch(setCredentials({ ...res.data }));
         navigate("/admin/home");
+        
         toast.success(res.data.message);
     } catch (error) {
         toast.error(error.response?.data.message || error.message); // Access 'data.message' property
