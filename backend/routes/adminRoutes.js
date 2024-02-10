@@ -24,14 +24,18 @@ router.get("/loadUsers",adminAuthCheck, adminLoadUsers);
 router.get("/loadHotelUsers",adminAuthCheck, adminLoadHotelUsers);
 router.put("/blockUnblockUser", blockUnblockUser)
 router.post(
-  console.log('its in the route of addpackagedetails'),
-  "/addPackageDetails",
+  "/addPackageDetails", // Define the route path without console.log
   upload.fields([
     { name: "categoryImages", maxCount: 1 }, // Max 1 file for category image
     { name: "images", maxCount: 5 }, // Max 3 files for package images
   ]),
+  (req, res, next) => {
+    console.log('its in the route of addpackagedetails'); // Move the console.log statement here
+    next(); // Call next to proceed to the next middleware or handler
+  },
   addPackageDetails
 );
+
 router.put("/blockUnblockHotelUser", blockUnblockHotelUser);
 router.get("/adminLoadPackages",adminAuthCheck, adminLoadPackages);
 router.put(
