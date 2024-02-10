@@ -2,7 +2,7 @@ import axios from "axios";
 
 
 const userAxiosInstance = axios.create({
-    baseURL: 'https://www.wetravels.online/api/users', // Replace with your API URL
+    baseURL: 'https://travelwithwetravel.website/api/users', // Replace with your API URL
     headers: {
       'Content-Type': 'application/json',
       

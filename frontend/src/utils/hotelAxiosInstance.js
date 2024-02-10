@@ -2,7 +2,7 @@ import axios from "axios";
 
 
 const hotelAxiosInstance = axios.create({
-    baseURL: 'https://www.wetravels.online/api/hotel', // Replace with your API URL
+    baseURL: 'https://travelwithwetravel.website/api/hotel', // Replace with your API URL
     headers: {
       'Content-Type': 'application/json',
       withCredentials: true, // If needed for cross-origin requests

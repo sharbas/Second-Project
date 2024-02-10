@@ -6,7 +6,7 @@ import {toast} from 'react-toastify'
 import io from "socket.io-client";
 import { useJwt } from "react-jwt";
 
-const ENDPOINT = "https://www.wetravels.online";
+const ENDPOINT = "https://travelwithwetravel.website";
 var socket, selectedChatCompare
 const  HotelChat=() =>{
   const {hotelInfo}=useSelector((state)=>state.hotelauth)

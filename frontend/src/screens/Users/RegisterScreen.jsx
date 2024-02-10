@@ -70,7 +70,7 @@ const submitHandler = async (e) => {
   }
 
   try {
-    const res = await axios.post('https://www.wetravels.online/api/users/register', {
+    const res = await axios.post('https://travelwithwetravel.website/api/users/register', {
       name,
       email,
       password,

@@ -46,7 +46,7 @@ const HomeScreen = () => {
            {/* Additional Banners, Images, and Category Sections */}
            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-20 mb-40">
   {/* Banner 1 */}
-  <Link to="https://www.wetravels.online/places?category=Solo&&packageId=6544dfbc0fe7d68bdad9edf8" style={{ textDecoration: 'none' }} className="block">
+  <Link to="https://travelwithwetravel.website/places?category=Solo&&packageId=6544dfbc0fe7d68bdad9edf8" style={{ textDecoration: 'none' }} className="block">
   <div className="bg-white p-4 rounded-md shadow-md overflow-hidden hover:transform hover:scale-105 transition-transform">
     {/* Add content for the first banner */}
     <img src="/solo.jpeg" alt="Banner 1" className="w-full h-40 object-cover object-center mb-4" />
@@ -64,7 +64,7 @@ const HomeScreen = () => {
   </div>
   </Link>
   {/* Banner 3 */}
-   <Link to="https://www.wetravels.online/places?category=Honeymoon&&packageId=6544e4260fe7d68bdad9ee05" style={{ textDecoration: 'none' }} className="block">
+   <Link to="https://travelwithwetravel.website/places?category=Honeymoon&&packageId=6544e4260fe7d68bdad9ee05" style={{ textDecoration: 'none' }} className="block">
   <div className="bg-white p-4 rounded-md shadow-md overflow-hidden hover:transform hover:scale-105 transition-transform">
     {/* Add content for the third banner */}
     <img src="/honeymoon.jpg" alt="Banner 3" className="w-full h-40 object-cover mb-4" />
