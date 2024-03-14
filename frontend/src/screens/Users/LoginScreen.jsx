@@ -67,7 +67,7 @@ const LoginScreen = () => {
 
   return (
 
-    <GoogleOAuthProvider clientId='704159527663-8d2ikv5bla9pcqd8mdst9og6c2162n2c.apps.googleusercontent.com'>
+    // <GoogleOAuthProvider clientId='704159527663-8d2ikv5bla9pcqd8mdst9og6c2162n2c.apps.googleusercontent.com'>
 
     <div className='login template d-flex justify-content-center align-items-center vh-100' style={{ backgroundColor: '#EFD3B5' }}>
     <div className='form_container p-5 rounded bg-white'>
@@ -92,19 +92,19 @@ const LoginScreen = () => {
             Forgot <a href='/forgotPassword' style={{textDecoration:'none'}}>Password?</a>
           </p>
         </div>
-        <GoogleLogin
+        {/* <GoogleLogin
               onSuccess={credentialResponse => {
                 authenticateData(credentialResponse);
               }}
               onError={() => {
                 console.log('Login Failed');
               }}
-            />
+            /> */}
       </form>
     </div>
   </div>
   
-  </GoogleOAuthProvider>
+  // </GoogleOAuthProvider>
 
   
   );

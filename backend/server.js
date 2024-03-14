@@ -16,15 +16,14 @@ const connet = async () => {
 };
 connet();
 // const io = socketIO(server);
-const app = express();
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+const app = express()
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 app.use(cors({
     origin:["https://travelwithwetravel.website","https://travelwithwetravel.website"],
     credentials:true
 }))
-app.use(cookieParser());
-
+app.use(cookieParser())
 app.use(express.static("backend/public"));
 app.use("/images",express.static("public/images"));
 app.use("/api/users", userRoutes);
@@ -39,11 +38,11 @@ app.get("*", (req, res) =>
   res.sendFile(path.resolve(dirname, "frontend", "dist", "index.html"))
 );
 
-app.use(notFound);
-app.use(errorHandler);
+app.use(notFound)
+app.use(errorHandler)
 const server = app.listen(port, () =>
   console.log(`Server started on port ${port}`)
-);
+)
 
 import { Server } from "socket.io";
 

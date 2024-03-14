@@ -98,7 +98,7 @@ const confirmOtp = async (req, res) => {
         console.error(error);
         res.status(500).json({ error: 'An error occurred while processing your request.' });
     }
-};
+}
 
 const resetPassword = async (req, res) => {
     try {
